@@ -1,0 +1,142 @@
+.NavbarItems {
+  /* background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73, 63, 251, 1) 100%); */
+  background: linear-gradient(90deg, rgba(73, 63, 251, 1) 0%, rgb(100, 94, 254) 100%);
+  /* background-color: #FFE53B;
+  background-image: linear-gradient(147deg, #3024db 0%, #c51b1b 74%); */
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+
+  /* Add shadow effect */
+  /* https://neumorphism.io/#e0e0e0 */
+  box-shadow: 0 4px 8px 0 rgba(165, 165, 165, 0.2), 0 6px 20px 0 rgba(95, 94, 94, 0.19);
+
+
+}
+
+.nav-logo {
+  color: #fff;
+  justify-self: start;
+  /* margin-left: 20px; */
+  margin-left: 0px;
+  cursor: pointer;
+}
+
+.seleng-logo {
+  color: #fff;
+  justify-self: start;
+  /* margin-left: 20px; */
+  margin-left: 0px;
+  cursor: pointer;
+}
+
+.fa-react {
+  margin-left: 0.5rem;
+  font-size: 1.6rem;
+}
+
+.nav-menu {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  grid-gap: 10px;
+  list-style: none;
+  text-align: center;
+  width: 70vw;
+  justify-content: end;
+  margin-right: 2rem;
+}
+
+.nav-links {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+.nav-links:hover {
+  background-color: #6d76f7;
+  border-radius: 4px;
+  transition: all 0.2s ease-out;
+}
+
+.fa-bars {
+  color: #fff;
+}
+
+.nav-links-mobile {
+  display: none;
+  color: #ffff;
+}
+
+.menu-icon {
+  display: none;
+}
+
+@media screen and (max-width: 960px) {
+
+  .NavbarItems {
+    position: relative;
+    justify-content: left;
+  }
+
+  .nav-menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    top: 65px;
+    left: -200%;
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+
+  .nav-menu.active {
+    background: #056e3d;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+    padding: 0;
+  }
+
+  .nav-links {
+    display: table;
+    text-align: center;
+    /* padding: 1.5rem; */
+    width: 100%;
+    padding: 1.5rem 0 1.5rem 0;
+  }
+
+  .nav-links:hover {
+    /* background-color: #7577fa; */
+    background-color: #1a8352;
+    border-radius: 0;
+  }
+
+  .nav-logo {
+    margin-left: 0px;
+    transform: translate(0%);
+  }
+
+  .saleng-logo {
+    margin-left: 20px;
+    transform: translate(0%);
+  }
+
+  .menu-icon {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .fa-times {
+    color: #fff;
+    font-size: 2rem;
+  }
+}

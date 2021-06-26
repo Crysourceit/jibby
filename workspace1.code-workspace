@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\..\\mygit\\react-project"
+		},
+		{
+			"path": "..\\..\\mygit\\moviesDB"
+		},
+		{
+			"path": "..\\..\\..\\binance_api"
+		},
+		{
+			"path": "..\\backend"
+		},
+		{
+			"path": "..\\..\\LEARN\\react_router"
+		}
+	],
+	"settings": {}
+}

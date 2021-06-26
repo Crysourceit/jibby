@@ -1,0 +1,131 @@
+.container {
+  display: flex;
+  font-family: 'Maven Pro', sans-serif;
+}
+
+.frame {
+  /* height: 54vh; */
+  width: 100vw;
+  max-width: 100%;
+  background-color: rgb(220, 245, 255);
+  padding: 1.5rem 50px 10px 50px;
+  margin: 3rem 15% 0 15%;
+  border: 2px solid #3C8DAD;
+  border-radius: 9px 9px;
+}
+
+.big-logo>h1 {
+  font-size: 70px;
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: 800;
+  color: #125D98;
+}
+
+.big-logo>img {
+  width: 220px;
+  float: left;
+  margin-right: 2.5rem;
+}
+
+.motto {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: center;
+}
+
+.motto-item>h3 {
+  color: #3C8DAD;
+  font-size: 2.1875rem;
+  margin: 0;
+}
+
+.motto-item>p {
+  color: #3C8DAD;
+  font-size: 1.25rem;
+}
+
+.frame>p {
+  color: #3C8DAD;
+}
+
+.motto-icons {
+  font-size: 2.5rem;
+  margin-left: 10px;
+  transition: transform 100ms;
+}
+
+.motto-icons:hover {
+  font-size: 2.5rem;
+  margin-left: 10px;
+  opacity: 0.8;
+  transition: 0.5s;
+  transform: translateX(-15%);
+}
+
+.hr-line {
+  border: 2px solid blue;
+  border-radius: 15px;
+}
+
+.hr-line-clicked {
+  border: 2px solid red;
+  border-radius: 15px;
+}
+
+
+
+
+
+@media screen and (max-width: 960px) {
+
+  ontainer {
+    display: flex;
+    font-family: 'Maven Pro', sans-serif;
+  }
+
+  .frame {
+    /* height: 80vh; */
+    width: 100vw;
+    max-width: 100%;
+    background-color: rgb(220, 245, 255);
+    padding: 1px;
+    margin: 1px;
+    border: 1px solid #3C8DAD;
+    border-radius: 0px 0px;
+  }
+
+  .big-logo>h1 {
+    font-size: 60px;
+    font-family: 'Maven Pro', sans-serif;
+    font-weight: 700;
+    color: #125D98;
+    margin-left: 1rem;
+  }
+
+  .big-logo>img {
+    width: 100px;
+    /* float: left; */
+    margin-right: 2.5rem;
+    margin-left: 1rem;
+  }
+
+  .motto {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+    flex-wrap: wrap;
+  }
+
+  .motto-item>h3 {
+    color: #3C8DAD;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .motto-item>p {
+    color: #3C8DAD;
+  }
+
+}
