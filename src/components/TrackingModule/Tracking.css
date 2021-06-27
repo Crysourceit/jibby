@@ -13,12 +13,8 @@
   padding: 5px;
 }
 
-
-
-
-@media screen and (max-width: 960px) {
-  .track-button {
-    margin-top: 50px;
-  }
-
+.fa-vest {
+  flex-basis: 100%;
+  text-align: center;
+  display: block;
 }
