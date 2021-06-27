@@ -3,14 +3,9 @@ import "./Jumbotron.css";
 import frameBg from "./black-thread-light.png"
 import { log } from 'async';
 import RandomHr from '../RandomHr/RandomHr';
+import WeatherApp from '../WeatherApp/WeatherApp';
 
 const PUBLIC_URL = process.env.PUBLIC_URL
-
-
-
-
-
-
 
 function Jumbotron() {
 
@@ -36,7 +31,7 @@ function Jumbotron() {
           </div>
           <div className="motto-item">
             <h3>Sound <i class="fas fa-egg motto-icons"></i></h3>
-            <p>Soft throwing.</p>
+            <p>Soft parcel throwing.</p>
           </div>
         </div>
 
@@ -48,7 +43,9 @@ function Jumbotron() {
             })
           }}
         ></hr>
-        <p>Morbi ut efficitur leo, ac cursus nibh. Nam laoreet vitae neque ut maximus. Sed fringilla ut tortor eget pulvinar. Morbi sollicitudin pellentesque neque cursus malesuada. Cras quis neque molestie quam ultrices viverra vel nec lectus. Vestibulum ultricies urna congue purus fringilla, nec sollicitudin lorem pulvinar. Curabitur malesuada est sit amet congue convallis. Phasellus sodales dapibus purus tempor feugiat.</p>
+        <p className="lorem">Morbi ut efficitur leo, ac cursus nibh. Nam laoreet vitae neque ut maximus. Sed fringilla ut tortor eget pulvinar. Morbi sollicitudin pellentesque neque cursus malesuada. Cras quis neque molestie quam ultrices viverra vel nec lectus. Vestibulum ultricies urna congue purus fringilla, nec sollicitudin lorem pulvinar. Curabitur malesuada est sit amet congue convallis. Phasellus sodales dapibus purus tempor feugiat.</p>
+        <WeatherApp city="Bangkok" />
+        <WeatherApp city="Beijing" />
       </div>
     </div>
   )
