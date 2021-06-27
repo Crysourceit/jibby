@@ -18,34 +18,47 @@ const useStyles = makeStyles((theme) => ({
 
 function Parcel(props) {
 
+  const [parcel, setParcel] = useState({
+    weight: 0,
+    dimension: 0,
+    cost: 0
+  });
+
   const [cost, setCost] = useState(0);
-  const [weight, setWeight] = useState(0);
-  const [dimension, setDimension] = useState(0);
 
-  const calCulateCost = (w, d) => {
-    return w * 5 + d / 10
+  const calculateCost = (w, d) => {
+    return w * 5 + (d / 10.0)
   }
 
+  function handleChange(event) {
+    const { id, value } = event.target;
 
-  //Refactor alert!  
-  //Should combine this two function
+    setParcel(prev => {
+      return {
+        ...prev,
+        [id]: parseFloat(value)
+      };
+    });
 
-  function handleWeight(e) {
-    let w = parseFloat(e.target.value)
-    setWeight(w)
-    // DO THIS WAY
-    setCost(calCulateCost(w, dimension))
-    props.setParcelInfo({ weight: w, dimension: dimension, cost: cost })
-    console.log(w)
-    // CANNOT !
-    // setCost(calCulateCost(weight, dimension))
-  }
+    //TEMP VALUE TO HANDLE 
+    let calCost = 0
+    if (id === "weight") {
+      calCost = calculateCost(value, parcel.dimension)
+      setCost(calCost)
+      props.setParcelInfo({ weight: value, dimension: parcel.dimension, cost: calCost })
+    }
+    else if (id === "dimension") {
+      calCost = calculateCost(parcel.weight, value)
+      setCost(calCost)
+      props.setParcelInfo({ weight: parcel.weight, dimension: value, cost: calCost })
+    }
 
-  function handleDim(e) {
-    let d = parseFloat(e.target.value)
-    setDimension(d)
-    setCost(calCulateCost(weight, d))
-    props.setParcelInfo({ weight: weight, dimension: d, cost: cost })
+    setParcel(prev => {
+      return {
+        ...prev, cost: parseFloat(calCost)
+      }
+    });
+
   }
 
   const classes = useStyles();
@@ -53,31 +66,31 @@ function Parcel(props) {
     <div>
       <TextField
         label="Parcel weight"
-        id="parcelWeight"
+        id="weight"
         className={clsx(classes.margin, classes.textField)}
         InputProps={{
           startAdornment: <InputAdornment position="start">(kg)</InputAdornment>,
         }}
         variant="outlined"
-        onChange={handleWeight}
-        value={weight}
+        onChange={handleChange}
+        value={parcel.weight}
       />
       <TextField
         label="Parcel dimension"
-        id="parcelDimension"
+        id="dimension"
         className={clsx(classes.margin, classes.textField)}
         InputProps={{
           startAdornment: <InputAdornment position="start">(cm.)</InputAdornment>,
         }}
         variant="outlined"
         helperText="Width + Height + Depth"
-        onChange={handleDim}
-        value={dimension}
+        onChange={handleChange}
+        value={parcel.dimension}
       />
       <TextField
         disabled
         label={"THB"}
-        id="Cost"
+        id="cost"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         value={cost}
