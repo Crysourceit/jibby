@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar'
 import Jumbotron from './components/Jumbotron/Jumbotron';
 import PageNotFound from './components/Pages/PageNotFound';
+import Tracking from './components/TrackingModule/Tracking';
 
 function App() {
   return (
@@ -12,12 +13,18 @@ function App() {
       <div className="root">
         <Navbar />
       </div>
-
       <Switch>
+
         <Route path="/" exact >
           <Jumbotron />
         </Route>
+
+        <Route path="/track" exact>
+          <Tracking />
+        </Route>
+
         <Route path="*" exact component={PageNotFound} />
+
       </Switch>
     </Router>
   );

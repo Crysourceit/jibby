@@ -6,22 +6,22 @@ const MenuItems = [
   },
   {
     title: 'Track',
-    url: '#',
+    url: '/track',
     cName: 'nav-links'
   },
   {
     title: 'Pricing',
-    url: '#',
+    url: '/pricing',
     cName: 'nav-links'
   },
   {
     title: 'Locations',
-    url: '#',
+    url: '/location',
     cName: 'nav-links'
   },
   {
     title: 'Contact Us',
-    url: '#',
+    url: '/contact',
     cName: 'nav-links'
   }
 ]
