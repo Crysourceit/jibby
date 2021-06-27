@@ -1,0 +1,24 @@
+.container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+
+.child {
+  /* background: red; */
+  /* flex-basis: 100%; */
+  padding: 5px;
+}
+
+
+
+
+@media screen and (max-width: 960px) {
+  .track-button {
+    margin-top: 50px;
+  }
+
+}
