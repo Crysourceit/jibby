@@ -19,25 +19,32 @@ function Register() {
   const classes = useStyles();
   return (
 
-    <div className='register_container'>
-      <Typography variant="h2" className='register_child'>Parcel register</Typography>
-      <Typography variant="h4" className='register_child'>Sender</Typography>
-      <Contact />
-      <Typography variant="h4" className='register_child'>Recipient</Typography>
-      <Contact />
-      <Typography variant="h4" className='register_child'>Parcel</Typography>
-      <Parcel />
-      <div className={classes.root}>
-        <Button variant="contained" color="primary">
-          Submit
-        </Button>
-        <Button variant="contained" color="secondary">
-          Reset
-        </Button>
-      </div>
+    <form>
+      <div className='register_container'>
+        <Typography variant="h2" className='register_child'>Parcel register</Typography>
+        <Typography variant="h4" className='register_child'>Sender</Typography>
 
+        {/* Sender */}
+        <Contact />
+        <Typography variant="h4" className='register_child'>Recipient</Typography>
 
-    </div >
+        {/* Recipent */}
+        <Contact />
+        <Typography variant="h4" className='register_child'>Parcel</Typography>
+
+        <Parcel />
+
+        {/* Button */}
+        <div className={classes.root}>
+          <Button variant="contained" color="primary">
+            Submit
+          </Button>
+          <Button variant="contained" color="secondary">
+            Reset
+          </Button>
+        </div>
+      </div >
+    </form>
   );
 }
 
