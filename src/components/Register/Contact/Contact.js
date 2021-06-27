@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +19,64 @@ const useStyles = makeStyles((theme) => ({
 
 function Contact(props) {
 
+  const [contactAddress, setContactAddress] = useState({
+    firstName: "",
+    lastName: "",
+    telephone: "",
+    postalCode: "",
+    address: ""
+  })
+
+
+  // IDEA
+  // function setterHelper(funk, e) {
+  //   const inputText = e.target.value
+  //   funk(() => {
+  //     return inputText
+  //   })
+  // }
+
+  //DOUBLE ARROW 
+  // const doubleArrow = (tags) => (event) => {
+  //   console.log(tags);
+  //   console.log(event.target.value);
+  // };
+
+  //DOUBLE ARROW LONG-VERSION!
+  //Functional programming
+  //Accept setter as a parameter!
+  // const [firstName, setFirstName] = useState('')
+  // const [lastName, setLastName] = useState('')
+  // const [tel, setTel] = useState('')
+  // const [postalCode, setPostalCode] = useState('')
+  // const [address, setAddress] = useState('')
+  // const setterHelper = function handleChange(func) {
+  //   return function (e) {
+  //     const inputText = e.target.value;
+  //     func(() => {
+  //       return inputText
+  //     });
+  //   };
+  // };
+
+  //Revised setterHelper
+  const handleChange = () => {
+    return (event) => {
+      const { id, value } = event.target
+      //Need previous
+      // setContactAddress({ [id]: value })
+      setContactAddress(prev => {
+        return {
+          ...prev, [id]: value
+        }
+      });
+      props.setContactInfo(contactAddress)
+      // console.log(`Name is ${id}`)
+      // console.log(`Value is ${value}`)
+    }
+  }
+
+
   const classes = useStyles();
 
   return (
@@ -28,21 +84,21 @@ function Contact(props) {
       <TextField
         required
         id="firstName"
-        label="FirstName"
+        label="First Name"
         defaultValue=""
         variant="outlined"
         helperText="Your first name e.g., Sirawit."
+        onChange={handleChange()}
       />
-
       <TextField
         required
         id="lastName"
-        label="Last name"
+        label="Last Name"
         defaultValue=""
         variant="outlined"
         helperText="Your last name e.g., Mahanin."
+        onChange={handleChange()}
       />
-
       <TextField
         required
         id="telephone"
@@ -50,8 +106,8 @@ function Contact(props) {
         defaultValue=""
         variant="outlined"
         helperText=""
+        onChange={handleChange()}
       />
-
       <TextField
         required
         id="postalCode"
@@ -59,6 +115,7 @@ function Contact(props) {
         defaultValue=""
         variant="outlined"
         helperText="Thailand's postal code e.g., 10400."
+        onChange={handleChange()}
       />
       <TextField
         required
@@ -69,6 +126,7 @@ function Contact(props) {
         defaultValue=""
         variant="outlined"
         style={{ width: '35ch' }}
+        onChange={handleChange()}
       />
     </form >
   );
