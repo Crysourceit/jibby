@@ -1,14 +1,25 @@
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import './App.css';
 import Navbar from './components/Navbar/Navbar'
 import Jumbotron from './components/Jumbotron/Jumbotron';
-import WeatherApp from './components/WeatherApp/WeatherApp';
+import PageNotFound from './components/Pages/PageNotFound';
 
 function App() {
   return (
-    <div className="root">
-      <Navbar />
-      <Jumbotron />
-    </div>
+
+    <Router>
+      {/* Always show */}
+      <div className="root">
+        <Navbar />
+      </div>
+
+      <Switch>
+        <Route path="/" exact >
+          <Jumbotron />
+        </Route>
+        <Route path="*" exact component={PageNotFound} />
+      </Switch>
+    </Router>
   );
 }
 

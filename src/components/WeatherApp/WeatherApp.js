@@ -28,7 +28,6 @@ function WeatherApp(props) {
   //With await/async ... later
 
   getTemp();
-  console.log(makeFirstUpper('1Abc'))
 
   return (
     <div>

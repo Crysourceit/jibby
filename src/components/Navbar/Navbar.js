@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import React, { Component } from 'react';
 import MenuItems from "./MenuItems.js";
 import "./Navbar.css";
@@ -15,8 +16,8 @@ class Navbar extends Component {
     return (
       <nav className="NavbarItems">
 
-        <img src={PUBLIC_URL + 'logo.png'} style={{ height: "55px" }} className="saleng-logo" />
-        <h1 className="nav-logo">aleng.th </h1>
+        <Link to="/"><img src={PUBLIC_URL + 'logo.png'} style={{ height: "55px" }} className="saleng-logo" /></Link>
+        <Link to="/"><h1 className="nav-logo">aleng.th </h1></Link>
         <div className="menu-icon" onClick={this.handleClick}>
           <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
         </div>
