@@ -4,6 +4,7 @@ import Navbar from './components/Navbar/Navbar'
 import Jumbotron from './components/Jumbotron/Jumbotron';
 import PageNotFound from './components/Pages/PageNotFound';
 import Tracking from './components/TrackingModule/Tracking';
+import Register from "./components/Register/Register";
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
 
         <Route path="/track" exact>
           <Tracking />
+        </Route>
+
+        <Route path="/register" exact>
+          <Register />
         </Route>
 
         <Route path="*" exact component={PageNotFound} />

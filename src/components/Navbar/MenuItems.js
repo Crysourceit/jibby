@@ -10,13 +10,13 @@ const MenuItems = [
     cName: 'nav-links'
   },
   {
-    title: 'Pricing',
-    url: '/pricing',
+    title: 'Pickup',
+    url: '/pickup',
     cName: 'nav-links'
   },
   {
-    title: 'Locations',
-    url: '/location',
+    title: 'Register',
+    url: '/register',
     cName: 'nav-links'
   },
   {
