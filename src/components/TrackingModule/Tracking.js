@@ -36,14 +36,17 @@ function Tracking() {
   const field = fieldStyles();
 
   return (
-    <div className="container">
-      <div className="child">
-        <form className={field.root} noValidate autoComplete="off">
-          <TextField id="standard-basic" label="Enter your Saleng's no." />
-        </form>
-      </div>
-      <div className="child">
-        <Button style={buttonStyles.root} variant="contained" color="secondary">Track</Button>
+    <div>
+      <i class="fas fa-vest" style={{ fontSize: '15rem', marginTop: '10rem', color: 'rgb(73,63,251, 1)' }}></i>
+      <div className="container">
+        <div className="child">
+          <form className={field.root} noValidate autoComplete="off">
+            <TextField id="standard-basic" label="Enter your Saleng's no." />
+          </form>
+        </div>
+        <div className="child">
+          <Button style={buttonStyles.root} variant="contained" color="secondary">Track</Button>
+        </div>
       </div>
     </div>
 
