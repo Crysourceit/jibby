@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 // Apply machine learning later
 
-function Parcel() {
+function Parcel(props) {
 
   const [cost, setCost] = useState(0);
   const [weight, setWeight] = useState(0);
@@ -26,11 +26,16 @@ function Parcel() {
     return w * 5 + d / 10
   }
 
+
+  //Refactor alert!  
+  //Should combine this two function
+
   function handleWeight(e) {
     let w = parseFloat(e.target.value)
     setWeight(w)
     // DO THIS WAY
     setCost(calCulateCost(w, dimension))
+    props.setParcelInfo({ weight: w, dimension: dimension, cost: cost })
     console.log(w)
     // CANNOT !
     // setCost(calCulateCost(weight, dimension))
@@ -40,6 +45,7 @@ function Parcel() {
     let d = parseFloat(e.target.value)
     setDimension(d)
     setCost(calCulateCost(weight, d))
+    props.setParcelInfo({ weight: weight, dimension: d, cost: cost })
   }
 
   const classes = useStyles();
