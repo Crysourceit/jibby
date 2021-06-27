@@ -17,7 +17,7 @@ class Navbar extends Component {
       <nav className="NavbarItems">
 
         <Link to="/"><img src={PUBLIC_URL + 'logo.png'} style={{ height: "55px" }} className="saleng-logo" /></Link>
-        <Link to="/"><h1 className="nav-logo">aleng.th </h1></Link>
+        <Link to="/" style={{ textDecoration: 'none' }}><h1 className="nav-logo">aleng.th </h1></Link>
         <div className="menu-icon" onClick={this.handleClick}>
           <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
         </div>
