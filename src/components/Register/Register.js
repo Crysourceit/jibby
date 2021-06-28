@@ -5,6 +5,7 @@ import Parcel from './Parcel/Parcel';
 import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+const axios = require('axios').default;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,61 +16,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 function Register() {
+
   const classes = useStyles();
 
   const [senderInfo, setSenderInfo] = useState();
   const [recipientInfo, setRecipientInfo] = useState();
   const [parcelInfo, setParcelInfo] = useState();
-  const [newParcel, setNewParcel] = useState();
 
-  // const examSender = {
-  //   _id: new mongoose.Types.ObjectId(),
-  //   firstName: "Sirawit",
-  //   lasName: "Mahain",
-  //   telephone: "064-002-2069",
-  //   postalCode: "10400",
-  //   address: "Secret"
+
+  // With promise
+  // function handleSubmit() {
+  //   //With promise
+  //   axios.post('/parcel', {
+  //     senderInfo: senderInfo,
+  //     recipientInfo: recipientInfo,
+  //     parcelInfo: parcelInfo
+  //   })
+  //     .then(function (response) {
+  //       console.log(response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
   // }
 
-  // const examRecipient = {
-  //   _id: new mongoose.Types.ObjectId(),
-  //   firstName: "Kornthip",
-  //   lasName: "Meenarin",
-  //   telephone: "087-174-4290",
-  //   postalCode: "10400",
-  //   address: "Secret"
-  // }
-
-  // const examParcel = {
-  //   weight: 10,
-  //   dimension: 15,
-  //   cost: 1500
-  // }
-
-  // const testParcel = new Parcel({
-  //   salengNo: 'SL-XXXX (future feature)',
-  //   deliverStatus: 'จัดส่งสำเร็จ (future feature)',
-  //   sender: examSender._id,
-  //   recipient: examRecipient._id,
-  //   parcel: examParcel,
-  // });
-
-  function handleSender() {
-
-  }
-
-
-  function handleRecipient() {
-
-  }
-
-  function handleResetButton() {
-
-  }
-
-  function handleSubmitButton() {
-
+  async function handleSubmit() {
+    try {
+      await axios.post('/parcel', {
+        senderInfo: senderInfo,
+        recipientInfo: recipientInfo,
+        parcelInfo: parcelInfo
+      });
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -89,8 +71,9 @@ function Register() {
       <Parcel setParcelInfo={setParcelInfo} />
 
       {/* Button */}
+      {/* AXIOX POST HERE */}
       <div className={classes.root}>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={handleSubmit}>
           Submit
         </Button>
         <Button variant="contained" color="secondary">

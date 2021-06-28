@@ -56,6 +56,7 @@ function Parcel(props) {
   return (
     <div>
       <TextField
+        type="number"
         label="Parcel weight"
         id="weight"
         className={clsx(classes.margin, classes.textField)}
@@ -67,6 +68,7 @@ function Parcel(props) {
         value={parcel.weight}
       />
       <TextField
+        type="number"
         label="Parcel dimension"
         id="dimension"
         className={clsx(classes.margin, classes.textField)}
