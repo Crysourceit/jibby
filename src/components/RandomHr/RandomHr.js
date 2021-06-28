@@ -9,10 +9,10 @@ function randomColor() {
 
 // Generate new color every clicks!
 
-function RandomHr() {
+function RandomHr(props) {
   const [HrColor, setHrColor] = useState(randomColor())
   return (
-    <hr style={{ color: HrColor, borderRadius: '15px', border: '1px solid' }}
+    <hr style={{ color: HrColor, borderRadius: '15px', border: '3px solid', width: props.width }}
       onClick={() => {
         setHrColor(randomColor())
       }}

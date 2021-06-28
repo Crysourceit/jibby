@@ -62,7 +62,9 @@ function Parcel(props) {
         className={clsx(classes.margin, classes.textField)}
         InputProps={{
           startAdornment: <InputAdornment position="start">(kg)</InputAdornment>,
+          error: parcel.weight < 0 ? true : false,
         }}
+        helperText={parcel.weight < 0 ? "Don't do this!" : ""}
         variant="outlined"
         onChange={handleChange}
         value={parcel.weight}
@@ -74,20 +76,21 @@ function Parcel(props) {
         className={clsx(classes.margin, classes.textField)}
         InputProps={{
           startAdornment: <InputAdornment position="start">(cm.)</InputAdornment>,
+          error: parcel.dimension < 0 ? true : false,
         }}
+        helperText={parcel.dimension < 0 ? "Don't do this!" : "Width + Height + Depth"}
         variant="outlined"
-        helperText="Width + Height + Depth"
         onChange={handleChange}
         value={parcel.dimension}
       />
       <TextField
         disabled
-        label={"THB"}
+        label="THB"
         id="cost"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
-        value={parcel.cost}
         helperText="Weight*5 + Dimension/10"
+        value={parcel.cost}
       />
     </div>
   );

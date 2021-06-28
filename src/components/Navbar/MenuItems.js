@@ -20,8 +20,8 @@ const MenuItems = [
     cName: 'nav-links'
   },
   {
-    title: 'Contact Us',
-    url: '/contact',
+    title: 'Report',
+    url: '/report',
     cName: 'nav-links'
   }
 ]

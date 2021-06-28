@@ -85,36 +85,40 @@ function Contact(props) {
         required
         id="firstName"
         label="First Name"
-        defaultValue=""
+        // defaultValue=""
         variant="outlined"
         helperText="Your first name e.g., Sirawit."
+        value={contactAddress.firstName}
         onChange={handleChange()}
       />
       <TextField
         required
         id="lastName"
         label="Last Name"
-        defaultValue=""
+        // defaultValue=""
         variant="outlined"
         helperText="Your last name e.g., Mahanin."
+        value={contactAddress.lastName}
         onChange={handleChange()}
       />
       <TextField
         required
         id="telephone"
         label="Tel."
-        defaultValue=""
+        // defaultValue=""
         variant="outlined"
         helperText=""
+        value={contactAddress.lastName}
         onChange={handleChange()}
       />
       <TextField
         required
         id="postalCode"
         label="Postal Code"
-        defaultValue=""
+        // defaultValue=""
         variant="outlined"
         helperText="Thailand's postal code e.g., 10400."
+        value={contactAddress.postalCode}
         onChange={handleChange()}
       />
       <TextField
@@ -123,9 +127,10 @@ function Contact(props) {
         label="Address"
         multiline
         rows={7}
-        defaultValue=""
+        // defaultValue=""
         variant="outlined"
         style={{ width: '35ch' }}
+        value={contactAddress.address}
         onChange={handleChange()}
       />
     </form >

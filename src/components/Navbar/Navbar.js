@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import React, { Component } from 'react';
 import MenuItems from "./MenuItems.js";
 import "./Navbar.css";
-import { Button } from "../Button"
 const PUBLIC_URL = process.env.PUBLIC_URL
 
 class Navbar extends Component {
