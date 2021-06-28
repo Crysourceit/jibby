@@ -15,50 +15,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // Apply machine learning later
+const calculateCost = (w, d) => {
+  return w * 5 + (d / 10.0)
+}
 
 function Parcel(props) {
 
-  const [parcel, setParcel] = useState({
+  const [parcel, setParcelInfo] = useState({
     weight: 0,
     dimension: 0,
     cost: 0
   });
 
-  const [cost, setCost] = useState(0);
-
-  const calculateCost = (w, d) => {
-    return w * 5 + (d / 10.0)
-  }
-
   function handleChange(event) {
     const { id, value } = event.target;
 
-    setParcel(prev => {
+    // Handle weight & dimension events
+    setParcelInfo(prev => {
       return {
         ...prev,
         [id]: parseFloat(value)
       };
     });
 
-    //TEMP VALUE TO HANDLE 
+    //Temp value to save cost 
     let calCost = 0
-    if (id === "weight") {
-      calCost = calculateCost(value, parcel.dimension)
-      setCost(calCost)
-      props.setParcelInfo({ weight: value, dimension: parcel.dimension, cost: calCost })
-    }
-    else if (id === "dimension") {
-      calCost = calculateCost(parcel.weight, value)
-      setCost(calCost)
-      props.setParcelInfo({ weight: parcel.weight, dimension: value, cost: calCost })
+    calCost = calculateCost(id === "weight" ? value : parcel.weight, id === "weight" ? parcel.dimension : value)
+
+    const temp_obj = {
+      weight: id === "weight" ? value : parcel.weight,
+      dimension: id === "weight" ? parcel.dimension : value,
+      cost: calCost,
     }
 
-    setParcel(prev => {
-      return {
-        ...prev, cost: parseFloat(calCost)
-      }
-    });
-
+    props.setParcelInfo(temp_obj)
+    setParcelInfo(temp_obj)
   }
 
   const classes = useStyles();
@@ -93,7 +84,7 @@ function Parcel(props) {
         id="cost"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
-        value={cost}
+        value={parcel.cost}
         helperText="Weight*5 + Dimension/10"
       />
     </div>
