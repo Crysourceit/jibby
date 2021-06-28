@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
@@ -19,63 +19,28 @@ const useStyles = makeStyles((theme) => ({
 
 function Contact(props) {
 
-  const [contactAddress, setContactAddress] = useState({
+  const emptyContact = {
     firstName: "",
     lastName: "",
     telephone: "",
     postalCode: "",
     address: ""
-  })
-
-
-  // IDEA
-  // function setterHelper(funk, e) {
-  //   const inputText = e.target.value
-  //   funk(() => {
-  //     return inputText
-  //   })
-  // }
-
-  //DOUBLE ARROW 
-  // const doubleArrow = (tags) => (event) => {
-  //   console.log(tags);
-  //   console.log(event.target.value);
-  // };
-
-  //DOUBLE ARROW LONG-VERSION!
-  //Functional programming
-  //Accept setter as a parameter!
-  // const [firstName, setFirstName] = useState('')
-  // const [lastName, setLastName] = useState('')
-  // const [tel, setTel] = useState('')
-  // const [postalCode, setPostalCode] = useState('')
-  // const [address, setAddress] = useState('')
-  // const setterHelper = function handleChange(func) {
-  //   return function (e) {
-  //     const inputText = e.target.value;
-  //     func(() => {
-  //       return inputText
-  //     });
-  //   };
-  // };
-
-  //Revised setterHelper
-  const handleChange = () => {
-    return (event) => {
-      const { id, value } = event.target
-      //Need previous
-      // setContactAddress({ [id]: value })
-      setContactAddress(prev => {
-        return {
-          ...prev, [id]: value
-        }
-      });
-      props.setContactInfo(contactAddress)
-      // console.log(`Name is ${id}`)
-      // console.log(`Value is ${value}`)
-    }
   }
 
+  const [contactAddress, setContactAddress] = useState(emptyContact);
+
+  function handleChange(event) {
+    const { id, value } = event.target
+    setContactAddress(prev => {
+      return {
+        ...prev, [id]: value
+      }
+    });
+  }
+
+  useEffect(() => {
+    props.setContactInfo(contactAddress)
+  }, [contactAddress]);
 
   const classes = useStyles();
 
@@ -89,7 +54,7 @@ function Contact(props) {
         variant="outlined"
         helperText="Your first name e.g., Sirawit."
         value={contactAddress.firstName}
-        onChange={handleChange()}
+        onChange={handleChange}
       />
       <TextField
         required
@@ -99,7 +64,7 @@ function Contact(props) {
         variant="outlined"
         helperText="Your last name e.g., Mahanin."
         value={contactAddress.lastName}
-        onChange={handleChange()}
+        onChange={handleChange}
       />
       <TextField
         required
@@ -108,8 +73,8 @@ function Contact(props) {
         // defaultValue=""
         variant="outlined"
         helperText=""
-        value={contactAddress.lastName}
-        onChange={handleChange()}
+        value={contactAddress.telephone}
+        onChange={handleChange}
       />
       <TextField
         required
@@ -119,7 +84,7 @@ function Contact(props) {
         variant="outlined"
         helperText="Thailand's postal code e.g., 10400."
         value={contactAddress.postalCode}
-        onChange={handleChange()}
+        onChange={handleChange}
       />
       <TextField
         required
@@ -131,7 +96,7 @@ function Contact(props) {
         variant="outlined"
         style={{ width: '35ch' }}
         value={contactAddress.address}
-        onChange={handleChange()}
+        onChange={handleChange}
       />
     </form >
   );

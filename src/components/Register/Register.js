@@ -1,4 +1,3 @@
-import { Redirect } from "react-router-dom"
 import React, { useState } from 'react';
 import Contact from './Contact/Contact';
 import Parcel from './Parcel/Parcel';
@@ -34,36 +33,21 @@ const containerStyles = makeStyles(() => ({
   }
 }));
 
-
 function Register() {
 
   const btnClass = buttonStyles();
   const typoClass = typoStyles();
   const containerClass = containerStyles();
 
-  const [senderInfo, setSenderInfo] = useState();
-  const [recipientInfo, setRecipientInfo] = useState();
-  const [parcelInfo, setParcelInfo] = useState();
-  const [redirect, setRedirect] = useState(false);
+  // States
+  const [senderInfo, setSenderInfo] = useState([]);
+  const [recipientInfo, setRecipientInfo] = useState([]);
+  const [parcelInfo, setParcelInfo] = useState([]);
 
-
-  // With promise
-  // function handleSubmit() {
-  //   //With promise
-  //   axios.post('/parcel', {
-  //     senderInfo: senderInfo,
-  //     recipientInfo: recipientInfo,
-  //     parcelInfo: parcelInfo
-  //   })
-  //     .then(function (response) {
-  //       console.log(response);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }
-
+  // form submit handler
+  // POST to express @localhost/4000
   async function handleSubmit() {
+    //
     try {
       await axios.post('/parcel', {
         senderInfo: senderInfo,
@@ -75,22 +59,15 @@ function Register() {
     }
   }
 
-
-  function redirectPlease() {
-    return <Redirect to="/" />
+  //form reset handler
+  const handleReset = () => {
+    setSenderInfo();
+    setRecipientInfo();
   }
-
-  // function redictedTo() {
-  //   return <Redirect to="/somewhere/else" />
-  // }
-
-  // if (redirect) {
-  //   redictedTo()
-  // }
 
   return (
     <div className={containerClass.root}>
-      <Typography variant="h2" className={typoClass.top} >Parcel register</Typography>
+      <Typography variant="h2" className={typoClass.top} >Parcel Register</Typography>
       <RandomHr width={'100%'} />
       <Typography variant="h4" className={typoClass.root}>Sender</Typography>
 
@@ -111,13 +88,12 @@ function Register() {
         <Button variant="contained" color="primary" onClick={handleSubmit}>
           Submit
         </Button>
-        <Button variant="contained" color="secondary" onC>
+        <Button variant="contained" color="secondary" onClick={handleReset}>
           {/* <Button variant="contained" color="secondary" onClick={resetButton} > */}
           Reset
         </Button>
       </div>
 
-      {/* {redirect ? redirectPlease() : "heelow"} */}
 
     </div >
   );

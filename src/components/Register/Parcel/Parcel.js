@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -27,9 +27,29 @@ function Parcel(props) {
     cost: 0
   });
 
+  // Handle cost update 
+  useEffect(() => {
+    //effect
+    console.log("Effect1");
+    setParcelInfo(prev => {
+      return ({
+        ...prev, cost: calculateCost(parcel.weight, parcel.dimension)
+      })
+    });
+    //cleanup
+    //empty
+    //input
+  }, [parcel.weight, parcel.dimension]);
+
+
+  // Handle prop
+  useEffect(() => {
+    console.log("Effect2");
+    props.setParcelInfo(parcel)
+  }, [parcel])
+
   function handleChange(event) {
     const { id, value } = event.target;
-
     // Handle weight & dimension events
     setParcelInfo(prev => {
       return {
@@ -37,19 +57,6 @@ function Parcel(props) {
         [id]: parseFloat(value)
       };
     });
-
-    //Temp value to save cost 
-    let calCost = 0
-    calCost = calculateCost(id === "weight" ? value : parcel.weight, id === "weight" ? parcel.dimension : value)
-
-    const temp_obj = {
-      weight: id === "weight" ? value : parcel.weight,
-      dimension: id === "weight" ? parcel.dimension : value,
-      cost: calCost,
-    }
-
-    props.setParcelInfo(temp_obj)
-    setParcelInfo(temp_obj)
   }
 
   const classes = useStyles();
