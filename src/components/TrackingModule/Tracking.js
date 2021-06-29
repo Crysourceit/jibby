@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import "./Tracking.css";
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+import clsx from 'clsx';
 
 const fieldStyles = makeStyles((theme) => ({
   root: {
@@ -35,27 +36,27 @@ const buttonStyles = {
 
 function Tracking() {
   document.title = `Tracking | Saleng.th`;
-  const [isFetched, setIsFetched] = useState(false);
+  const [isFetchSuccess, setIsFetchSuccess] = useState(false);
   const [parcelStatus, setParcelStatus] = useState([]);
-  const [salengNo, setSalengNo] = useState([]);
+  const [salengNo, setSalengNo] = useState('');
   const [helperText, setHelperText] = useState('');
 
   async function fetchParcelStatus(id) {
     // console.log("fetchParcelStatus() invoked")
     try {
-      // console.log("try invoked")
       const response = await axios.get("/parcel" + `/${id}`);
-      console.log("Fetching data...");
-      if (response.status === 200) {
+      console.log("try block reached");
+      if (response.status === 200 && response.data != null) {
+        console.log(response.data)
         console.log(response.status)
         setParcelStatus(response.data);
-        setIsFetched(true);
-        console.log("End of try/if reached")
+        setIsFetchSuccess(true);
+        console.log("200 block reached")
       }
     } catch (error) {
-      // console.log("error invoked")
+      console.log("error block reached")
       // console.log(error);
-      setIsFetched(false);
+      setIsFetchSuccess(false);
       if (error.response) {
         // console.log(error.response.data);
         console.log(error.response.status);
@@ -64,40 +65,36 @@ function Tracking() {
   }
 
   function handleClick() {
+    setIsFetchSuccess(false);
     setParcelStatus([]);
-    setIsFetched(false);
-    setHelperText('');
     setSalengNo('');
+    setHelperText('');
   }
 
+  function handleChange(e) {
+    setSalengNo(e.target.value)
+  }
 
   useEffect(() => {
-    // Get started to fetch when almost done typing
 
-    if (salengNo.length === 0) {
-      setIsFetched(prev => {
-        if (prev === true) {
-          return false
-        }
-      });
-      setHelperText('')
+    if (salengNo.length < 24) {
+      setHelperText('');
     }
 
-    if (salengNo.length > 20 && salengNo.length <= 24) {
-      // setHelperText(`${(24 - salengNo.length)} characters left.`)
+    if (salengNo.length > 1) {
+      // setTimeout(() => {
       fetchParcelStatus(salengNo);
-
+      // }, 250);
     }
 
-    if (!isFetched && salengNo.length === 24) {
-      console.log("Fuck You")
-      setHelperText('Invalid input');
+    if (!isFetchSuccess && salengNo.length >= 24) {
+      setTimeout(() => {
+        setHelperText('Invalid Input')
+      }, 777);
     }
 
-    console.log(`salengNo ${salengNo.length} | salengNo=24 ${salengNo.length === 24} | isFetched= ${isFetched} | logic ${salengNo.length === 24 && (!isFetched)}`);
-
+    console.log(`salengNo ${salengNo.length} | salengNo=24 ${salengNo.length === 24} | isFetched= ${isFetchSuccess} | logic ${salengNo.length === 24 && (!isFetchSuccess)}`);
   }, [salengNo])
-
 
   const field = fieldStyles();
 
@@ -108,18 +105,18 @@ function Tracking() {
         <div className="tracking_child">
           <form className={field.root} noValidate autoComplete="off">
             <TextField id="salengNo" value={salengNo} label="Enter your Saleng's no."
-              onChange={(e) => {
-                setSalengNo(e.target.value)
-              }} />
+              onChange={handleChange} />
           </form>
         </div>
         <div className="tracking_child">
           <Button style={buttonStyles.root} variant="contained" color="secondary" onClick={handleClick}>Reset</Button>
         </div>
-        <div id="helper-text"> <p><em>{helperText}</em></p> </div>
+        <div id="helper-text">
+          {!isFetchSuccess && <p><em>{helperText}</em></p>}
+        </div>
         <div id="status-area">
-          {isFetched && <div><h1>Status</h1><p></p></div>}
-          {/* {isFetched && <div><p>From {parcelStatus.sender.firstName} to {parcelStatus.recipient.firstName}, status {parcelStatus.deliverStatus}.</p></div>} */}
+          {isFetchSuccess && <div><h1>Status</h1><p></p></div>}
+          {isFetchSuccess && <div><p>Sender: <em>{parcelStatus.sender.firstName}</em>  |  Recipient: <em>{parcelStatus.recipient.firstName}</em>  |  Status: {parcelStatus.deliverStatus}</p></div>}
         </div>
       </div>
 

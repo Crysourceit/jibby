@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Contact(props) {
 
-  const emptyContact = {
+  const emptyContactList = {
     firstName: "",
     lastName: "",
     telephone: "",
@@ -24,7 +24,9 @@ function Contact(props) {
     address: ""
   }
 
-  const [contactAddress, setContactAddress] = useState(emptyContact);
+  const [contactAddress, setContactAddress] = useState(emptyContactList);
+  const [isReset, setIsReset] = useState(false);
+
 
   function handleChange(event) {
     const { id, value } = event.target
@@ -37,7 +39,12 @@ function Contact(props) {
 
   useEffect(() => {
     props.setContactInfo(contactAddress)
-  }, [contactAddress]);
+
+    if (isReset) {
+      setContactAddress(emptyContactList);
+
+    }
+  }, [contactAddress, isReset]);
 
   const classes = useStyles();
 

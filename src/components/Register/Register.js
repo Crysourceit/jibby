@@ -36,7 +36,6 @@ const containerStyles = makeStyles(() => ({
 
 function Register() {
 
-
   document.title = `Register | Saleng.th`;
   const btnClass = buttonStyles();
   const typoClass = typoStyles();
@@ -64,8 +63,12 @@ function Register() {
 
   //form reset handler
   const handleReset = () => {
-    setSenderInfo();
-    setRecipientInfo();
+    // Reset all in Register.js
+    setSenderInfo([]);
+    setRecipientInfo([]);
+
+    //Pass boolean value 
+
   }
 
   return (
