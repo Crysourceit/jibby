@@ -12,9 +12,6 @@ const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
   },
-  textField: {
-    width: '25ch',
-  },
 }));
 
 function Contact(props) {
@@ -91,12 +88,17 @@ function Contact(props) {
         id="address"
         label="Address"
         multiline
-        rows={7}
+        rows={5}
         // defaultValue=""
         variant="outlined"
-        style={{ width: '35ch' }}
         value={contactAddress.address}
         onChange={handleChange}
+      // style={{ width: '!important' }}
+      // ref={(el) => {
+      //   if (el) {
+      //     el.style.setProperty('width', '30px !important');
+      //   }
+      // }}
       />
     </form >
   );

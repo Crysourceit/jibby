@@ -1,0 +1,8 @@
+#pageNotFound {
+  width: 100%;
+  height: calc(100vh - 80px);
+  /* background-color: red; */
+  /* background-image: url("https://illustatus.herokuapp.com/?title=Oops,%20Page%20not%20found&fill=%234f86ed") */
+  background-image: url("./illustatus.svg");
+  background-repeat: no-repeat;
+}

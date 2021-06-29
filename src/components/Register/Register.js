@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import clsx from 'clsx';
 import Contact from './Contact/Contact';
 import Parcel from './Parcel/Parcel';
 import { Typography } from '@material-ui/core';
@@ -28,8 +29,8 @@ const typoStyles = makeStyles(() => ({
 
 const containerStyles = makeStyles(() => ({
   root: {
-    marginLeft: '15%',
-    marginRight: '15%'
+    marginLeft: '10%',
+    marginRight: '10%'
   }
 }));
 
@@ -68,9 +69,9 @@ function Register() {
   }
 
   return (
-    <div className={containerClass.root}>
-      <Typography variant="h2" className={typoClass.top} >Parcel Register</Typography>
-      <RandomHr width={'100%'} />
+    <div className={clsx(true && containerClass.root)}>
+      <Typography variant="h3" className={typoClass.top} >Parcel Register</Typography>
+      <RandomHr width={'100% !important'} />
       <Typography variant="h4" className={typoClass.root}>Sender</Typography>
 
       {/* Sender */}
@@ -95,7 +96,6 @@ function Register() {
           Reset
         </Button>
       </div>
-
 
     </div >
   );

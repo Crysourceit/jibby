@@ -29,7 +29,6 @@ function Report() {
     <div class="report_container">
       <div>
         <h1>Report</h1>
-        <p>(not mobile-friendly..working on material-ui's table)</p>
       </div>
 
       <RandomHr width='100%' />

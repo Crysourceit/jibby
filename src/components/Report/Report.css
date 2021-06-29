@@ -1,6 +1,6 @@
 .report_container {
   text-align: center;
-  margin: 5% 15% 0% 15%;
+  margin: 3% 15% 0% 15%;
 }
 
 .report_container h1 {
@@ -11,7 +11,6 @@
 .report_container h2 {
   font-size: 30px;
 }
-
 
 
 
@@ -41,4 +40,16 @@ table tr td:nth-child(4) {
 
 table tr td:nth-child(5) {
   width: 12.5%;
+}
+
+
+@media screen and (max-width: 960px) {
+
+  table tr th:nth-child(1) {
+    display: none;
+  }
+
+  table tr td:nth-child(1) {
+    display: none;
+  }
 }
