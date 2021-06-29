@@ -6,13 +6,13 @@ const axios = require('axios').default;
 
 
 function Report() {
-
+  document.title = `Report | Saleng.th`;
   const [reports, setReport] = useState([]);
 
   async function fetchParcel() {
     const response = await axios.get("/parcel");
     setReport(response.data);
-    console.log(response.data);
+    // console.log(response.data);
     console.log("Fetching data...")
   }
 
@@ -43,7 +43,7 @@ function Report() {
 
       <table>
         <tr>
-          <th>#Salength</th>
+          <th>_id</th>
           <th>Sender</th>
           <th>Recipient</th>
           <th>Status</th>
@@ -52,7 +52,7 @@ function Report() {
 
         {dummyReports.map((report, index) => {
           return (<tr>
-            <td>{report.salengNo}</td>
+            <td>{report._id}</td>
             <td>{report.sender}</td>
             <td>{report.recipient}</td>
             <td style={{ backgroundColor: report.deliverStatus === "Success" ? 'lime' : 'none' }}>{report.deliverStatus}</td>
@@ -64,10 +64,10 @@ function Report() {
         {reports ? reports.map((report, index) => {
           return (
             <tr>
-              <td>{report.salengNo}</td>
+              <td>{report._id}</td>
               <td>{report.sender.firstName}</td>
               <td>{report.recipient.firstName}</td>
-              <td>{report.deliverStatus}</td>
+              <td style={{ backgroundColor: report.deliverStatus === "Success" ? 'lime' : 'none' }}>{report.deliverStatus}</td>
               <td>{report.parcel.cost}</td>
             </tr>
             /*<Note

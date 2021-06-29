@@ -28,13 +28,15 @@ const typoStyles = makeStyles(() => ({
 
 const containerStyles = makeStyles(() => ({
   root: {
-    marginLeft: '25%',
-    marginRight: '25%'
+    marginLeft: '15%',
+    marginRight: '15%'
   }
 }));
 
 function Register() {
 
+
+  document.title = `Register | Saleng.th`;
   const btnClass = buttonStyles();
   const typoClass = typoStyles();
   const containerClass = containerStyles();
