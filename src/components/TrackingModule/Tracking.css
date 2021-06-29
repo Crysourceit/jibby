@@ -43,11 +43,23 @@
   font-size: 1.5rem;
 }
 
-
+#status-area strong {
+  color: blue;
+}
 
 
 .fa-vest {
   flex-basis: 100%;
   text-align: center;
   display: block;
+}
+
+
+@media screen and (max-width: 960px) {
+
+  #status-area p {
+    font-size: 1rem;
+  }
+
+
 }

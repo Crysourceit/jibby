@@ -104,7 +104,7 @@ function Tracking() {
       <div className="tracking_container">
         <div className="tracking_child">
           <form className={field.root} noValidate autoComplete="off">
-            <TextField id="salengNo" value={salengNo} label="Enter your Saleng's no."
+            <TextField id="salengNo" value={salengNo} label="Enter your Saleng's no. (use _id for now)"
               onChange={handleChange} />
           </form>
         </div>
@@ -115,8 +115,8 @@ function Tracking() {
           {!isFetchSuccess && <p><em>{helperText}</em></p>}
         </div>
         <div id="status-area">
-          {isFetchSuccess && <div><h1>Status</h1><p></p></div>}
-          {isFetchSuccess && <div><p>Sender: <em>{parcelStatus.sender.firstName}</em>  |  Recipient: <em>{parcelStatus.recipient.firstName}</em>  |  Status: {parcelStatus.deliverStatus}</p></div>}
+          {isFetchSuccess && <div><h1>Status</h1></div>}
+          {isFetchSuccess && <div><p>Sender: <strong>{parcelStatus.sender.firstName}</strong>  |  Recipient: <strong>{parcelStatus.recipient.firstName}</strong>  |  Status: <strong>{parcelStatus.deliverStatus}</strong></p></div>}
         </div>
       </div>
 
