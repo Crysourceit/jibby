@@ -12,13 +12,27 @@
   padding: 5px;
 }
 
+.tracking_child>p {
+  flex-basis: 100%;
+  color: red;
+}
+
+#helper-text {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+#helper-text>p {
+  color: red;
+}
+
 #status-area {
   display: block;
   width: 100%;
   text-align: center;
   margin-top: 20px;
   margin-bottom: 50px;
-
 }
 
 #status-area h1 {

@@ -35,36 +35,66 @@ const buttonStyles = {
 
 function Tracking() {
   document.title = `Tracking | Saleng.th`;
-  const [isFetched, setIsFetch] = useState(false);
+  const [isFetched, setIsFetched] = useState(false);
   const [parcelStatus, setParcelStatus] = useState([]);
-  const [salengNo, setSalengNo] = useState([])
-
+  const [salengNo, setSalengNo] = useState([]);
+  const [helperText, setHelperText] = useState('');
 
   async function fetchParcelStatus(id) {
-    const response = await axios.get("/parcel" + `/${id}`);
-    setParcelStatus(response.data);
-    // console.log(response.data);
-    console.log("Fetching data...");
+    // console.log("fetchParcelStatus() invoked")
+    try {
+      // console.log("try invoked")
+      const response = await axios.get("/parcel" + `/${id}`);
+      console.log("Fetching data...");
+      if (response.status === 200) {
+        console.log(response.status)
+        setParcelStatus(response.data);
+        setIsFetched(true);
+        console.log("End of try/if reached")
+      }
+    } catch (error) {
+      // console.log("error invoked")
+      // console.log(error);
+      setIsFetched(false);
+      if (error.response) {
+        // console.log(error.response.data);
+        console.log(error.response.status);
+      }
+    }
   }
 
   function handleClick() {
-    setIsFetch(true);
+    setParcelStatus([]);
+    setIsFetched(false);
+    setHelperText('');
+    setSalengNo('');
   }
 
-  function Status() {
-    return (<p>From {parcelStatus.sender.firstName} to {parcelStatus.recipient.firstName}, status {parcelStatus.deliverStatus}.</p>)
-  }
 
   useEffect(() => {
-    //effect
-    console.log("Effect invoked")
-    if (salengNo.length == 24) {
-      fetchParcelStatus(salengNo);
+    // Get started to fetch when almost done typing
+
+    if (salengNo.length === 0) {
+      setIsFetched(prev => {
+        if (prev === true) {
+          return false
+        }
+      });
+      setHelperText('')
     }
 
-    if (salengNo.length == 0) {
-      setIsFetch(false);
+    if (salengNo.length > 20 && salengNo.length <= 24) {
+      // setHelperText(`${(24 - salengNo.length)} characters left.`)
+      fetchParcelStatus(salengNo);
+
     }
+
+    if (!isFetched && salengNo.length === 24) {
+      console.log("Fuck You")
+      setHelperText('Invalid input');
+    }
+
+    console.log(`salengNo ${salengNo.length} | salengNo=24 ${salengNo.length === 24} | isFetched= ${isFetched} | logic ${salengNo.length === 24 && (!isFetched)}`);
 
   }, [salengNo])
 
@@ -77,19 +107,19 @@ function Tracking() {
       <div className="tracking_container">
         <div className="tracking_child">
           <form className={field.root} noValidate autoComplete="off">
-            <TextField id="salengNo" label="Enter your Saleng's no."
+            <TextField id="salengNo" value={salengNo} label="Enter your Saleng's no."
               onChange={(e) => {
                 setSalengNo(e.target.value)
               }} />
-            <p>just use _id for now</p>
           </form>
         </div>
         <div className="tracking_child">
-          <Button style={buttonStyles.root} variant="contained" color="secondary" onClick={handleClick}>Track</Button>
+          <Button style={buttonStyles.root} variant="contained" color="secondary" onClick={handleClick}>Reset</Button>
         </div>
+        <div id="helper-text"> <p><em>{helperText}</em></p> </div>
         <div id="status-area">
           {isFetched && <div><h1>Status</h1><p></p></div>}
-          {isFetched && <Status />}
+          {/* {isFetched && <div><p>From {parcelStatus.sender.firstName} to {parcelStatus.recipient.firstName}, status {parcelStatus.deliverStatus}.</p></div>} */}
         </div>
       </div>
 
