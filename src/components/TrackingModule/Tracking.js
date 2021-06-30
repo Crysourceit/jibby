@@ -96,7 +96,7 @@ function Tracking() {
       // setTimeout(() => {
       setTimeout(() => {
         fetchParcelStatus(salengNo);
-      }, 500);
+      }, 450);
       // }, 250);
     }
 
