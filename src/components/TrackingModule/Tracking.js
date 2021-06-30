@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import "./Tracking.css";
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-import clsx from 'clsx';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const fieldStyles = makeStyles((theme) => ({
   root: {
@@ -31,15 +31,26 @@ const buttonStyles = {
   },
 }
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}));
+
 //Material-UI
 //https://material-ui.com/components/text-fields/
 
 function Tracking() {
+  const classes = useStyles();
   document.title = `Tracking | Saleng.th`;
   const [isFetchSuccess, setIsFetchSuccess] = useState(false);
   const [parcelStatus, setParcelStatus] = useState([]);
   const [salengNo, setSalengNo] = useState('');
   const [helperText, setHelperText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   async function fetchParcelStatus(id) {
     // console.log("fetchParcelStatus() invoked")
@@ -83,14 +94,20 @@ function Tracking() {
 
     if (salengNo.length > 1) {
       // setTimeout(() => {
-      fetchParcelStatus(salengNo);
+      setTimeout(() => {
+        fetchParcelStatus(salengNo);
+      }, 500);
       // }, 250);
     }
 
+
+
     if (!isFetchSuccess && salengNo.length >= 24) {
+      setIsLoading(true);
       setTimeout(() => {
+        setIsLoading(false);
         setHelperText('Invalid Input')
-      }, 777);
+      }, 1000);
     }
 
     console.log(`salengNo ${salengNo.length} | salengNo=24 ${salengNo.length === 24} | isFetched= ${isFetchSuccess} | logic ${salengNo.length === 24 && (!isFetchSuccess)}`);
@@ -112,7 +129,10 @@ function Tracking() {
           <Button style={buttonStyles.root} variant="contained" color="secondary" onClick={handleClick}>Reset</Button>
         </div>
         <div id="helper-text">
-          {!isFetchSuccess && <p><em>{helperText}</em></p>}
+          {!isFetchSuccess ? <p><em>{helperText}</em></p> : <p style={{ display: 'none' }}><em>{helperText}</em></p>}
+        </div>
+        <div className={classes.root}>
+          {isLoading ? <CircularProgress /> : <CircularProgress style={{ visibility: 'hidden' }} />}
         </div>
         <div id="status-area">
           {isFetchSuccess && <div><h1>Status</h1></div>}
