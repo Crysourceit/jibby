@@ -25,7 +25,6 @@ function Contact(props) {
   }
 
   const [contactAddress, setContactAddress] = useState(emptyContactList);
-  const [isReset, setIsReset] = useState(false);
 
 
   function handleChange(event) {
@@ -40,11 +39,7 @@ function Contact(props) {
   useEffect(() => {
     props.setContactInfo(contactAddress)
 
-    if (isReset) {
-      setContactAddress(emptyContactList);
-
-    }
-  }, [contactAddress, isReset]);
+  }, [contactAddress]);
 
   const classes = useStyles();
 

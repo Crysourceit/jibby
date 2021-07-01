@@ -1,11 +1,12 @@
 // Use to combine reducers
 import { combineReducers } from "redux";
 import accountReducer from "./accountReducer";
-import senderReducer from "./senderReducer";
+import contactReducer from "./contactReducer";
 
 const reducers = combineReducers({
   account: accountReducer,
-  sender: senderReducer
+  contact: contactReducer,
+  sender: contactReducer
   //another account
 });
 
