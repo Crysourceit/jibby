@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "..\\backend"
+		},
+		{
+			"path": "..\\..\\LEARN\\redux"
 		}
 	],
 	"settings": {}

@@ -5,8 +5,8 @@ import Jumbotron from './components/Jumbotron/Jumbotron';
 import PageNotFound from './components/Pages/PageNotFound';
 import Tracking from './components/TrackingModule/Tracking';
 import Register from "./components/Register/Register";
-import Report
-  from "./components/Report/Report";
+import Report from "./components/Report/Report";
+import CounterApp from "./components/CounterApp/CounterApp"
 function App() {
   return (
 
@@ -27,6 +27,10 @@ function App() {
 
         <Route path="/report" exact>
           <Report />
+        </Route>
+
+        <Route path="/ct" exact>
+          <CounterApp />
         </Route>
 
         <Route path="/register" exact>
