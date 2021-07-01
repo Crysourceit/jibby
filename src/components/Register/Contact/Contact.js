@@ -16,30 +16,9 @@ const useStyles = makeStyles((theme) => ({
 
 function Contact(props) {
 
-  const emptyContactList = {
-    firstName: "",
-    lastName: "",
-    telephone: "",
-    postalCode: "",
-    address: ""
-  }
-
-  const [contactAddress, setContactAddress] = useState(emptyContactList);
-
-
   function handleChange(event) {
-    const { id, value } = event.target
-    setContactAddress(prev => {
-      return {
-        ...prev, [id]: value
-      }
-    });
+    props.setContactInfo(event, props.name)
   }
-
-  useEffect(() => {
-    props.setContactInfo(contactAddress)
-
-  }, [contactAddress]);
 
   const classes = useStyles();
 
@@ -52,7 +31,7 @@ function Contact(props) {
         // defaultValue=""
         variant="outlined"
         helperText="Your first name e.g., Sirawit."
-        value={contactAddress.firstName}
+        value={props.contactInfo.firstName}
         onChange={handleChange}
       />
       <TextField
@@ -62,7 +41,7 @@ function Contact(props) {
         // defaultValue=""
         variant="outlined"
         helperText="Your last name e.g., Mahanin."
-        value={contactAddress.lastName}
+        value={props.contactInfo.lastName}
         onChange={handleChange}
       />
       <TextField
@@ -72,7 +51,7 @@ function Contact(props) {
         // defaultValue=""
         variant="outlined"
         helperText=""
-        value={contactAddress.telephone}
+        value={props.contactInfo.telephone}
         onChange={handleChange}
       />
       <TextField
@@ -82,7 +61,7 @@ function Contact(props) {
         // defaultValue=""
         variant="outlined"
         helperText="Thailand's postal code e.g., 10400."
-        value={contactAddress.postalCode}
+        value={props.contactInfo.postalCode}
         onChange={handleChange}
       />
       <TextField
@@ -93,7 +72,7 @@ function Contact(props) {
         rows={5}
         // defaultValue=""
         variant="outlined"
-        value={contactAddress.address}
+        value={props.contactInfo.address}
         onChange={handleChange}
       // style={{ width: '!important' }}
       // ref={(el) => {

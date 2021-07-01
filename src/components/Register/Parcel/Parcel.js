@@ -27,26 +27,26 @@ function Parcel(props) {
     cost: 0
   });
 
-  // Handle cost update 
-  useEffect(() => {
-    //effect
-    console.log("Effect1");
-    setParcelInfo(prev => {
-      return ({
-        ...prev, cost: calculateCost(parcel.weight, parcel.dimension)
-      })
-    });
-    //cleanup
-    //empty
-    //input
-  }, [parcel.weight, parcel.dimension]);
+  // // Handle cost update 
+  // useEffect(() => {
+  //   //effect
+  //   console.log("Effect1");
+  //   setParcelInfo(prev => {
+  //     return ({
+  //       ...prev, cost: calculateCost(parcel.weight, parcel.dimension)
+  //     })
+  //   });
+  //   //cleanup
+  //   //empty
+  //   //input
+  // }, [parcel.weight, parcel.dimension]);
 
 
-  // Handle prop
-  useEffect(() => {
-    console.log("Effect2");
-    props.setParcelInfo(parcel)
-  }, [parcel])
+  // // Handle prop
+  // useEffect(() => {
+  //   console.log("Effect2");
+  //   props.setParcelInfo(parcel)
+  // }, [parcel])
 
   function handleChange(event) {
     const { id, value } = event.target;

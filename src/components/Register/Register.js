@@ -1,4 +1,8 @@
+import store from "../../state/store";
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { contactActions } from "../../state/_Actions";
 import clsx from 'clsx';
 import Contact from './Contact/Contact';
 import Parcel from './Parcel/Parcel';
@@ -6,7 +10,9 @@ import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import RandomHr from '../RandomHr/RandomHr';
+import { setContact } from "../../state/action-creators/contact";
 const axios = require('axios').default;
+
 
 const buttonStyles = makeStyles((theme) => ({
   root: {
@@ -42,11 +48,34 @@ function Register() {
   const containerClass = containerStyles();
 
   // States
-  const [senderInfo, setSenderInfo] = useState([]);
-  const [recipientInfo, setRecipientInfo] = useState([]);
+  // const [senderInfo, setSenderInfo] = useState([]);
+  // const [recipientInfo, setRecipientInfo] = useState([]);
   const [parcelInfo, setParcelInfo] = useState([]);
 
-  // form submit handler
+  const emptyContactList = {
+    firstName: "",
+    lastName: "",
+    telephone: "",
+    postalCode: "",
+    address: ""
+  }
+
+  ////////// Redux 
+
+  // Dispatch
+  const dispatch = useDispatch();
+
+  //Sender
+  const senderInfo = useSelector((state) => state.sender)
+  let { setContact: setSenderInfo, resetContact: resetSenderInfo } = bindActionCreators(contactActions, dispatch);
+
+
+  //Recipient
+  const recipientInfo = useSelector((state) => state.recipient)
+  let { setContact: setRecipientInfo, resetContact: resetRecipientInfo } = bindActionCreators(contactActions, dispatch);
+
+
+  // Form submit handler
   // POST to express @localhost/4000
   async function handleSubmit() {
     //
@@ -61,14 +90,53 @@ function Register() {
     }
   }
 
-  //form reset handler
-  const handleReset = () => {
-    // Reset all in Register.js
-    setSenderInfo([]);
-    setRecipientInfo([]);
 
-    //Pass boolean value 
+  ////////// Dispatch example
+  // Works
+  // store.dispatch({
+  //   type: "set",
+  //   payload: {
+  //     id: "firstName",
+  //     value: "Sirawit"
+  //   },
+  //   name: "sender"
+  // })
 
+  // Works
+  // setSenderInfo({
+  //   target: {
+  //     id: "firstName",
+  //     value: "kronthip"
+  //   }
+  // }, 'sender')
+
+  // Works 
+  // store.dispatch({
+  //   type: "set",
+  //   payload: {
+  //     id: "firstName",
+  //     value: "sirawit"
+  //   }
+  // })
+
+  // WORKS 
+  // store.dispatch({
+  //   type: "reset",
+  //   payload: {}
+  // })
+  ////////// Dispatch example
+
+  function handleReset() {
+    // store.dispatch({
+    //   type: "set",
+    //   payload: {
+    //     id: "firstName",
+    //     value: "Sirawit"
+    //   },
+    //   name: "sender"
+    // })
+    // resetSenderInfo('sender')
+    // resetRecipientInfo('recipient')
   }
 
   return (
@@ -78,11 +146,11 @@ function Register() {
       <Typography variant="h4" className={typoClass.root}>Sender</Typography>
 
       {/* Sender */}
-      <Contact setContactInfo={setSenderInfo} />
+      <Contact name="sender" setContactInfo={setSenderInfo} contactInfo={senderInfo} />
       <Typography variant="h4" className={typoClass.root}>Recipient</Typography>
 
       {/* Recipent */}
-      <Contact setContactInfo={setRecipientInfo} />
+      <Contact setContactInfo={setRecipientInfo} contactInfo={recipientInfo} />
       <Typography variant="h4" className={typoClass.root}>Parcel</Typography>
 
       {/* Parcel */}

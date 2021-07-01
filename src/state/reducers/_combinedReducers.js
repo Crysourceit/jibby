@@ -6,10 +6,11 @@ import { createNamedWrapperReducer } from "./contactReducer";
 
 const reducers = combineReducers({
   account: accountReducer,
-  contact: contactReducer,
+  // contact: contactReducer, // cannot use at the same time!
   sender: createNamedWrapperReducer(contactReducer, "sender"),
   recipient: createNamedWrapperReducer(contactReducer, "recipient"),
 });
+
 
 export default reducers;
 
