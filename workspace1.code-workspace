@@ -16,5 +16,7 @@
 			"path": "..\\..\\LEARN\\redux"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"workbench.tree.indent": 18
+	}
 }

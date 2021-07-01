@@ -6,7 +6,7 @@ import PageNotFound from './components/Pages/PageNotFound';
 import Tracking from './components/TrackingModule/Tracking';
 import Register from "./components/Register/Register";
 import Report from "./components/Report/Report";
-import CounterApp from "./components/CounterApp/CounterApp"
+import AccountApp from "./components/AccountApp/AccountApp";
 function App() {
   return (
 
@@ -29,8 +29,8 @@ function App() {
           <Report />
         </Route>
 
-        <Route path="/ct" exact>
-          <CounterApp />
+        <Route path="/account" exact>
+          <AccountApp />
         </Route>
 
         <Route path="/register" exact>
