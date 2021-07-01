@@ -13,9 +13,16 @@ function AccountApp() {
   // console.log(account);
   // console.log(depositMoney);
 
+
+  // Lower order reducer [contact]
   const contact = useSelector((state) => state.contact);
   const { setContact, resetContact } = bindActionCreators(contactActions, dispatch);
   console.log(contact)
+
+  // Higher order reducer [(contactReducer, "sender")] 
+  const sender = useSelector((state) => state.sender)
+
+  //
 
   return (
     <div style={{ textAlign: 'center', marginTop: '10%' }}>
@@ -24,11 +31,11 @@ function AccountApp() {
       <button onClick={() => depositMoney(100)}>bindActionCreators</button>
       {/* <input type="text" id="firstName" onChange={(e) => { console.log(e.target.value) }} /> */}
 
-      <input type="text" id="firstName" onChange={(e) => { setContact(e) }} />
-      <input type="text" id="lastName" onChange={(e) => { setContact(e) }} />
-      <input type="text" id="telephone" onChange={(e) => { setContact(e) }} />
-      <input type="text" id="postalCode" onChange={(e) => { setContact(e) }} />
-      <input type="text" id="address" onChange={(e) => { setContact(e) }} />
+      <input value={contact.firstName} type="text" id="firstName" onChange={(e) => { setContact(e) }} />
+      <input value={contact.lastName} type="text" id="lastName" onChange={(e) => { setContact(e) }} />
+      <input value={contact.telephone} type="text" id="telephone" onChange={(e) => { setContact(e) }} />
+      <input value={contact.postalCode} type="text" id="postalCode" onChange={(e) => { setContact(e) }} />
+      <input value={contact.address} type="text" id="address" onChange={(e) => { setContact(e) }} />
       <button onClick={() => resetContact()}>Reset</button>
     </div>
   )
