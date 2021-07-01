@@ -1,14 +1,14 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { actionCreators } from "../../state/index";
+import { accountActions } from "../../state/_Actions";
 
 function AccountApp() {
 
   const account = useSelector((state) => state.account)
   const dispatch = useDispatch();
 
-  const { depositMoney, withdrawMoney } = bindActionCreators(actionCreators, dispatch);
+  const { depositMoney, withdrawMoney } = bindActionCreators(accountActions, dispatch);
 
   console.log(depositMoney)
 
