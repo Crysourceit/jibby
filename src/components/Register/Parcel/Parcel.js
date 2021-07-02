@@ -21,37 +21,20 @@ const calculateCost = (w, d) => {
 
 function Parcel(props) {
 
-  const [parcel, setParcelInfo] = useState({
-    weight: 0,
-    dimension: 0,
-    cost: 0
-  });
-
   // // Handle cost update 
-  // useEffect(() => {
-  //   //effect
-  //   console.log("Effect1");
-  //   setParcelInfo(prev => {
-  //     return ({
-  //       ...prev, cost: calculateCost(parcel.weight, parcel.dimension)
-  //     })
-  //   });
-  //   //cleanup
-  //   //empty
-  //   //input
-  // }, [parcel.weight, parcel.dimension]);
-
-
-  // // Handle prop
-  // useEffect(() => {
-  //   console.log("Effect2");
-  //   props.setParcelInfo(parcel)
-  // }, [parcel])
+  useEffect(() => {
+    // console.log("Effect");
+    props.setParcelInfo(prev => {
+      return ({
+        ...prev, cost: calculateCost(props.parcelInfo.weight, props.parcelInfo.dimension)
+      })
+    });
+  }, [props.parcelInfo.weight, props.parcelInfo.dimension]);
 
   function handleChange(event) {
     const { id, value } = event.target;
     // Handle weight & dimension events
-    setParcelInfo(prev => {
+    props.setParcelInfo(prev => {
       return {
         ...prev,
         [id]: parseFloat(value)
@@ -69,12 +52,12 @@ function Parcel(props) {
         className={clsx(classes.margin, classes.textField)}
         InputProps={{
           startAdornment: <InputAdornment position="start">(kg)</InputAdornment>,
-          error: parcel.weight < 0 ? true : false,
+          error: props.parcelInfo.weight < 0 ? true : false,
         }}
-        helperText={parcel.weight < 0 ? "Don't do this!" : ""}
+        helperText={props.parcelInfo.weight < 0 ? "Don't do this!" : ""}
         variant="outlined"
         onChange={handleChange}
-        value={parcel.weight}
+        value={props.parcelInfo.weight}
       />
       <TextField
         type="number"
@@ -83,12 +66,12 @@ function Parcel(props) {
         className={clsx(classes.margin, classes.textField)}
         InputProps={{
           startAdornment: <InputAdornment position="start">(cm.)</InputAdornment>,
-          error: parcel.dimension < 0 ? true : false,
+          error: props.parcelInfo.dimension < 0 ? true : false,
         }}
-        helperText={parcel.dimension < 0 ? "Don't do this!" : "Width + Height + Depth"}
+        helperText={props.parcelInfo.dimension < 0 ? "Don't do this!" : "Width + Height + Depth"}
         variant="outlined"
         onChange={handleChange}
-        value={parcel.dimension}
+        value={props.parcelInfo.dimension}
       />
       <TextField
         disabled
@@ -97,7 +80,7 @@ function Parcel(props) {
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         helperText="Weight*5 + Dimension/10"
-        value={parcel.cost}
+        value={props.parcelInfo.cost}
       />
     </div>
   );

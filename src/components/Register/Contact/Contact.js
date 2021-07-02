@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 function Contact(props) {
 
   function handleChange(event) {
-    props.setContactInfo(event, props.name)
+    props.setContactInfo(event)
   }
 
   const classes = useStyles();

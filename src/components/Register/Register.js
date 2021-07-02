@@ -1,4 +1,3 @@
-import store from "../../state/store";
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,7 +9,6 @@ import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import RandomHr from '../RandomHr/RandomHr';
-import { setContact } from "../../state/action-creators/contact";
 const axios = require('axios').default;
 
 
@@ -50,46 +48,69 @@ function Register() {
   // States
   // const [senderInfo, setSenderInfo] = useState([]);
   // const [recipientInfo, setRecipientInfo] = useState([]);
-  const [parcelInfo, setParcelInfo] = useState([]);
-
-  const emptyContactList = {
-    firstName: "",
-    lastName: "",
-    telephone: "",
-    postalCode: "",
-    address: ""
-  }
+  const [parcelInfo, setParcelInfo] = useState({
+    weight: 0,
+    dimension: 0,
+    cost: 0
+  });
 
   ////////// Redux 
 
   // Dispatch
+
   const dispatch = useDispatch();
 
   //Sender
   const senderInfo = useSelector((state) => state.sender)
-  let { setContact: setSenderInfo, resetContact: resetSenderInfo } = bindActionCreators(contactActions, dispatch);
-
+  const { setContact: _setSenderInfo, resetContact: resetSenderInfo } = bindActionCreators(contactActions, dispatch);
+  const setSenderInfo = () => (event) => {
+    _setSenderInfo(event, "sender")
+  }
 
   //Recipient
   const recipientInfo = useSelector((state) => state.recipient)
-  let { setContact: setRecipientInfo, resetContact: resetRecipientInfo } = bindActionCreators(contactActions, dispatch);
+  const { setContact: _setRecipientInfo, resetContact: resetRecipientInfo } = bindActionCreators(contactActions, dispatch);
+  const setRecipientInfo = () => (event) => {
+    _setRecipientInfo(event, "recipient")
+  }
+  ////////// Redux 
 
 
-  // Form submit handler
-  // POST to express @localhost/4000
-  async function handleSubmit() {
-    //
+  async function postParcelAwait() {
     try {
-      await axios.post('/parcel', {
+      const response = await axios.post('/parcel', {
         senderInfo: senderInfo,
         recipientInfo: recipientInfo,
         parcelInfo: parcelInfo
       });
+      if (response.status === 200) {
+        // console.log(response)
+        handleReset();
+      }
     } catch (error) {
       console.log(error)
     }
   }
 
+  // function postParcelPromise() {
+  //   axios.post('/parcel', {
+  //     senderInfo: senderInfo,
+  //     recipientInfo: recipientInfo,
+  //     parcelInfo: parcelInfo
+  //   })
+  //     .then((response) => { console.log(response) })
+  //     .then(() => { handleReset() })
+  //     .catch((error) => { console.log(error) })
+  // }
+
+  function handleSubmit() {
+
+    // Check all required form before submit
+    if (true) {
+      // postParcelPromise();
+      postParcelAwait();
+    }
+  }
 
   ////////// Dispatch example
   // Works
@@ -124,19 +145,27 @@ function Register() {
   //   type: "reset",
   //   payload: {}
   // })
+
+  // store.dispatch({
+  //   type: "set",
+  //   payload: {
+  //     id: "firstName",
+  //     value: "Sirawit"
+  //   },
+  //   name: "sender"
+  // })
+  // resetSenderInfo('sender')
+  // resetRecipientInfo('recipient')
   ////////// Dispatch example
 
   function handleReset() {
-    // store.dispatch({
-    //   type: "set",
-    //   payload: {
-    //     id: "firstName",
-    //     value: "Sirawit"
-    //   },
-    //   name: "sender"
-    // })
-    // resetSenderInfo('sender')
-    // resetRecipientInfo('recipient')
+    resetRecipientInfo("recipient");
+    resetSenderInfo("sender");
+    setParcelInfo({
+      weight: 0,
+      dimension: 0,
+      cost: 0
+    });
   }
 
   return (
@@ -146,15 +175,15 @@ function Register() {
       <Typography variant="h4" className={typoClass.root}>Sender</Typography>
 
       {/* Sender */}
-      <Contact name="sender" setContactInfo={setSenderInfo} contactInfo={senderInfo} />
+      <Contact setContactInfo={setSenderInfo()} contactInfo={senderInfo} />
       <Typography variant="h4" className={typoClass.root}>Recipient</Typography>
 
       {/* Recipent */}
-      <Contact setContactInfo={setRecipientInfo} contactInfo={recipientInfo} />
+      <Contact setContactInfo={setRecipientInfo()} contactInfo={recipientInfo} />
       <Typography variant="h4" className={typoClass.root}>Parcel</Typography>
 
       {/* Parcel */}
-      <Parcel setParcelInfo={setParcelInfo} />
+      <Parcel setParcelInfo={setParcelInfo} parcelInfo={parcelInfo} />
 
       {/* Button */}
       {/* AXIOX POST HERE */}
@@ -167,7 +196,6 @@ function Register() {
           Reset
         </Button>
       </div>
-
     </div >
   );
 }
