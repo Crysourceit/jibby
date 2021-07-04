@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import "./Jumbotron.css";
 import frameBg from "./black-thread-light.png"
-import { log } from 'async';
 import RandomHr from '../RandomHr/RandomHr';
 import WeatherApp from '../WeatherApp/WeatherApp';
 
@@ -14,11 +13,11 @@ function Jumbotron() {
   return (
 
     <div className="container">
-      <div className="frame" style={{ backgroundImage: "url(" + frameBg + ")" }}>
+      <div className="frame" >
+        {/* <div className="frame" style={{ backgroundImage: "url(" + frameBg + ")" }}> */}
         <div className="big-logo">
-          <h1>Saleng.th</h1>
-
-          <img src={PUBLIC_URL + "/saleng.png"} />
+          <h1>Jibby</h1>
+          {/* <img src={PUBLIC_URL + "/saleng.png"} /> */}
         </div>
         <div className="motto">
           <div className="motto-item">

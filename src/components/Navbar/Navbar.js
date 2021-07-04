@@ -1,8 +1,9 @@
+import Animated from "./chicken.svg";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import React, { Component } from 'react';
 import MenuItems from "./MenuItems.js";
 import "./Navbar.css";
-const PUBLIC_URL = process.env.PUBLIC_URL
+const PUBLIC_URL = process.env.PUBLIC_URL;
 
 class Navbar extends Component {
   state = { clicked: false }
@@ -14,9 +15,9 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="NavbarItems">
-
-        <Link to="/"><img src={PUBLIC_URL + 'logo.png'} style={{ height: "55px" }} className="saleng-logo" /></Link>
-        <Link to="/" style={{ textDecoration: 'none' }}><h1 className="nav-logo">aleng.th </h1></Link>
+        <object className="jibby-logo" style={{ height: '80px', width: '60px' }} type="image/svg+xml" data={Animated}>svg-animation</object>
+        {/* <Link to="/"><img src={PUBLIC_URL + 'logo.png'} style={{ height: "60px" }} className="saleng-logo" /></Link> */}
+        <Link to="/" style={{ textDecoration: 'none' }}><h1 className="nav-logo">Jibby</h1></Link>
         <div className="menu-icon" onClick={this.handleClick}>
           <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
         </div>

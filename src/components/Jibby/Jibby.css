@@ -1,0 +1,80 @@
+.jibby {
+  display: flex;
+  position: relative;
+  z-index: -1;
+  width: 100vw;
+
+}
+
+.jibby-item {
+  flex-basis: 100%;
+}
+
+.jibby img {
+  object-fit: cover;
+  width: 100%;
+  /* Bird 10 */
+  height: 90vh;
+  object-position: 60% 50%;
+
+  /* Bird5 */
+  /* height: 90vh; */
+  /* object-position: 0% 0%; */
+}
+
+
+.jibby-overlay-text {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 100px;
+  font-weight: 100;
+  text-shadow: 5px 2px 3px rgb(0, 0, 0);
+  color: white;
+  font-family: 'Pacifico', cursive;
+}
+
+
+.jibby img {
+  animation: scaleImgEffect 50s alternate infinite;
+  /* height: calc(100vh * 0.6); */
+  /* width: 100vw; */
+}
+
+@keyframes scaleImgEffect {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.5) translate(-10%, 0%);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* @keyframes scaleImgEffect {
+  20% {
+    transform: scale(2.5);
+  }
+
+  40% {
+    transform: scale(1.5) translate(10%, -5%);
+  }
+
+  60% {
+    transform: scale(2) translate(15%, 10%);
+  }
+
+  80% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(2.5)translate(-20%, -10%);
+  }
+} */

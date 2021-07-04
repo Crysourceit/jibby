@@ -9,8 +9,8 @@ import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import RandomHr from '../RandomHr/RandomHr';
+import QRCodeComp from './QRcodeComp/QRCodeComp';
 const axios = require('axios').default;
-
 
 const buttonStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +40,7 @@ const containerStyles = makeStyles(() => ({
 
 function Register() {
 
-  document.title = `Register | Saleng.th`;
+  document.title = `Register | Jibby`;
   const btnClass = buttonStyles();
   const typoClass = typoStyles();
   const containerClass = containerStyles();
@@ -53,6 +53,10 @@ function Register() {
     dimension: 0,
     cost: 0
   });
+  const [open, setOpen] = useState(false);
+  const [jibbyTag, setJibbyTag] = useState('');
+
+
 
   ////////// Redux 
 
@@ -86,6 +90,7 @@ function Register() {
       if (response.status === 200) {
         // console.log(response)
         handleReset();
+        return response
       }
     } catch (error) {
       console.log(error)
@@ -103,12 +108,15 @@ function Register() {
   //     .catch((error) => { console.log(error) })
   // }
 
-  function handleSubmit() {
 
+
+  async function handleSubmit() {
     // Check all required form before submit
     if (true) {
       // postParcelPromise();
-      postParcelAwait();
+      const response = await postParcelAwait();
+      setJibbyTag(response.data.jibbyTag);
+      setOpen(true);
     }
   }
 
@@ -194,6 +202,7 @@ function Register() {
         <Button variant="contained" color="secondary" onClick={handleReset}>
           {/* <Button variant="contained" color="secondary" onClick={resetButton} > */}
           Reset
+          <QRCodeComp open={open} setOpen={setOpen} jibbyTag={jibbyTag} />
         </Button>
       </div>
     </div >

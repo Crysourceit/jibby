@@ -9,11 +9,11 @@ const MenuItems = [
     url: '/track',
     cName: 'nav-links'
   },
-  {
-    title: 'Pickup',
-    url: '/pickup',
-    cName: 'nav-links'
-  },
+  // {
+  //   title: 'Pickup',
+  //   url: '/pickup',
+  //   cName: 'nav-links'
+  // },
   {
     title: 'Register',
     url: '/register',

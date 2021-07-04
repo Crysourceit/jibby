@@ -1,3 +1,4 @@
+import { useParams } from 'react-router';
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -5,6 +6,7 @@ import "./Tracking.css";
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import CircularProgress from '@material-ui/core/CircularProgress';
+const PUBLIC_URL = process.env.PUBLIC_URL;
 
 const fieldStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +20,8 @@ const fieldStyles = makeStyles((theme) => ({
 //https://material-ui.com/customization/components/
 const buttonStyles = {
   root: {
-    background: 'linear-gradient(151deg, #2446ff 25%, #f96262 90%)',
+    // background: 'linear-gradient(151deg, #2446ff 25%, #f96262 90%)',
+    background: 'crimson',
     borderRadius: 5,
     border: 0,
     color: 'white',
@@ -43,34 +46,52 @@ const useStyles = makeStyles((theme) => ({
 //Material-UI
 //https://material-ui.com/components/text-fields/
 
-function Tracking() {
-  const classes = useStyles();
-  document.title = `Tracking | Saleng.th`;
+function Tracking(props) {
+  document.title = `Tracking | Jibby`;
   const [isFetchSuccess, setIsFetchSuccess] = useState(false);
   const [parcelStatus, setParcelStatus] = useState([]);
-  const [salengNo, setSalengNo] = useState('');
+  const [jibbyTag, setJibbyTag] = useState('');
   const [helperText, setHelperText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isRedirectedFromRegister, setIsRedirectedFromRegister] = useState(false);
+  const [isRedirectedFromQR, setIsRedirectedFromQR] = useState(false);
+  const params = useParams();
+
+  /////////////// Check if redirected from register page
+  try {
+    if (props.location.state && !isRedirectedFromRegister) {
+      setJibbyTag(props.location.state.jibbyTag);
+      setIsRedirectedFromRegister(true);
+    }
+  } catch (error) {
+    console.log(error)
+  }
+  /////////////// Check if accessed from QR code
+  if (params.jibbyTag && !isRedirectedFromQR) {
+    setJibbyTag(params.jibbyTag);
+    setIsRedirectedFromQR(true);
+  }
+  /////////////// Normal root
 
   async function fetchParcelStatus(id) {
     // console.log("fetchParcelStatus() invoked")
     try {
       const response = await axios.get("/parcel" + `/${id}`);
-      console.log("try block reached");
+      // console.log("try block reached");
       if (response.status === 200 && response.data != null) {
-        console.log(response.data)
-        console.log(response.status)
+        // console.log(response.data)
+        // console.log(response.status)
         setParcelStatus(response.data);
         setIsFetchSuccess(true);
-        console.log("200 block reached")
+        // console.log("200 block reached")
       }
     } catch (error) {
-      console.log("error block reached")
+      // console.log("error block reached")
       // console.log(error);
       setIsFetchSuccess(false);
       if (error.response) {
         // console.log(error.response.data);
-        console.log(error.response.status);
+        // console.log(error.response.status);
       }
     }
   }
@@ -78,31 +99,29 @@ function Tracking() {
   function handleClick() {
     setIsFetchSuccess(false);
     setParcelStatus([]);
-    setSalengNo('');
+    setJibbyTag('');
     setHelperText('');
   }
 
   function handleChange(e) {
-    setSalengNo(e.target.value)
+    setJibbyTag(e.target.value)
   }
 
   useEffect(() => {
 
-    if (salengNo.length < 24) {
+    if (jibbyTag.length < 24) {
       setHelperText('');
     }
 
-    if (salengNo.length > 1) {
+    if (jibbyTag.length > 1) {
       // setTimeout(() => {
       setTimeout(() => {
-        fetchParcelStatus(salengNo);
+        fetchParcelStatus(jibbyTag);
       }, 450);
       // }, 250);
     }
 
-
-
-    if (!isFetchSuccess && salengNo.length >= 24) {
+    if (!isFetchSuccess && jibbyTag.length >= 24) {
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
@@ -110,18 +129,22 @@ function Tracking() {
       }, 1000);
     }
 
-    console.log(`salengNo ${salengNo.length} | salengNo=24 ${salengNo.length === 24} | isFetched= ${isFetchSuccess} | logic ${salengNo.length === 24 && (!isFetchSuccess)}`);
-  }, [salengNo])
+    // console.log(`salengNo ${jibbyTag.length} | salengNo=24 ${jibbyTag.length === 24} | isFetched= ${isFetchSuccess} | logic ${jibbyTag.length === 24 && (!isFetchSuccess)}`);
+  }, [jibbyTag])
 
   const field = fieldStyles();
+  const classes = useStyles();
 
   return (
     <div>
-      <i class="fas fa-vest" style={{ fontSize: '15rem', marginTop: '5rem', color: 'rgb(73,63,251, 1)' }}></i>
+      <h1 style={{ textAlign: 'center' }}>Jibby Track</h1>
+      <div className="tracking_logo">
+        <object style={{ height: "300px", width: "300px" }} type="image/svg+xml" data={PUBLIC_URL + "/svg/tracking_motion.svg"}>svg-animation</object>
+      </div>
       <div className="tracking_container">
         <div className="tracking_child">
           <form className={field.root} noValidate autoComplete="off">
-            <TextField id="salengNo" value={salengNo} label="Enter your Saleng's no. (use _id for now)"
+            <TextField id="salengNo" value={jibbyTag} label="Enter your Jibby-tags (use _id for now)"
               onChange={handleChange} />
           </form>
         </div>
@@ -139,9 +162,7 @@ function Tracking() {
           {isFetchSuccess && <div><p>Sender: <strong>{parcelStatus.sender.firstName}</strong>  |  Recipient: <strong>{parcelStatus.recipient.firstName}</strong>  |  Status: <strong>{parcelStatus.deliverStatus}</strong></p></div>}
         </div>
       </div>
-
     </div>
-
   )
 }
 

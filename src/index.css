@@ -5,10 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("./cubes.png");
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  /* background-image: url("./cubes.png"); */
+  /* background-color: rgb(255, 195, 77); */
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  overflow-x: hidden
 }

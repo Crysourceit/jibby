@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "..\\..\\..\\binance_api"
+		},
+		{
+			"path": "..\\..\\LEARN\\css-grid"
 		}
 	],
 	"settings": {

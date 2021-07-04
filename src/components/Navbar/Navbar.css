@@ -11,9 +11,10 @@
 
   /* Add shadow effect */
   /* https://neumorphism.io/#e0e0e0 */
-  box-shadow: 0 4px 8px 0 rgba(165, 165, 165, 0.2), 0 6px 20px 0 rgba(95, 94, 94, 0.19);
-
-
+  box-shadow: 0 4px 8px 0 rgba(165, 165, 165, 0.2),
+    0 6px 20px 0 rgba(95, 94, 94, 0.19);
+  z-index: 999;
+  width: 100vw;
 }
 
 .nav-logo {
@@ -22,6 +23,10 @@
   /* margin-left: 20px; */
   margin-left: 0px;
   cursor: pointer;
+  font-family: 'Pacifico', cursive;
+  letter-spacing: 4px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .seleng-logo {
@@ -40,13 +45,17 @@
 .nav-menu {
   display: grid;
   grid-template-columns: repeat(7, auto);
-  grid-gap: 10px;
+  grid-gap: 0px;
   list-style: none;
   text-align: center;
-  width: 50vw;
+  width: 60vw;
   justify-content: end;
-  margin-right: 2rem;
+  /* margin-right: 5rem; */
 }
+
+/* .nav-menu a {
+  /* border: 2px solid red; */
+
 
 .nav-links {
   color: white;
@@ -93,7 +102,8 @@
   }
 
   .nav-menu.active {
-    background: #056e3d;
+    /* background: #3282B8; */
+    background: #1F5F8B;
     left: 0;
     opacity: 1;
     transition: all 0.5s ease;
@@ -111,13 +121,19 @@
 
   .nav-links:hover {
     /* background-color: #7577fa; */
-    background-color: #1a8352;
+    /* background-color: #e4a63b; */
+    background-color: #d8a423;
     border-radius: 0;
   }
 
   .nav-logo {
     margin-left: 0px;
     transform: translate(0%);
+  }
+
+  .jibby-logo {
+    margin-left: 30px;
+    transform: translate(-7%);
   }
 
   .saleng-logo {

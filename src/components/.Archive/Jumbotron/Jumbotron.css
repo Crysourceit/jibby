@@ -18,7 +18,8 @@
   font-size: 70px;
   font-family: 'Maven Pro', sans-serif;
   font-weight: 800;
-  color: #125D98;
+  /* color: #125D98;  */
+  color: #005691;
 }
 
 .big-logo>img {

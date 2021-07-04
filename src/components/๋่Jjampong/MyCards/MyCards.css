@@ -1,0 +1,39 @@
+.service-cards {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  /* height: 80%; */
+  /* border: 2px solid rgb(0, 60, 255); */
+  /* background-color: cornflowerblue; */
+  /* padding: 20px; */
+  box-shadow: 0px 7px 5px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.service-cards-icon {
+  /* border: 1px solid red; */
+  /* width: 100% !important; */
+}
+
+.service-cards-headlines {
+  color: #008cfb;
+  /* margin: 0; */
+}
+
+.service-cards-contents p:nth-of-type(1) {
+  color: black;
+  /* margin: 0; */
+}
+
+.service-cards-contents p:nth-of-type(2) {
+  color: grey;
+  /* margin: 0; */
+}
+
+
+/* On mouse-over, add a deeper shadow */
+.service-cards:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}

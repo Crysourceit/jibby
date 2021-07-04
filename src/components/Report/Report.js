@@ -7,7 +7,7 @@ const axios = require('axios').default;
 
 function Report() {
 
-  document.title = `Report | Saleng.th`;
+  document.title = `Report | Jibby`;
   const [reports, setReport] = useState([]);
   const [isInitialFetch, setIsinitialFetch] = useState(false);
 
