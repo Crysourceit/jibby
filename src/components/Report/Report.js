@@ -3,9 +3,10 @@ import NumberFormat from 'react-number-format';
 import React, { useState, useEffect } from 'react'
 import './Report.css';
 import RandomHr from '../RandomHr/RandomHr';
-const axios = require('axios').default;
+import axios from 'axios';
 
 function Report() {
+
 
   document.title = `Report | Jibby`;
   const [reports, setReport] = useState([]);
@@ -19,7 +20,7 @@ function Report() {
         <td>{props.senderFName}</td>
         <td>{props.recipientFName}</td>
         <td style={{ backgroundColor: props.deliverStatus === "Success" ? 'lime' : 'none' }}>{props.deliverStatus}</td>
-        <td><NumberFormat value={props.parcelCost} displayType={'text'} thousandSeparator={true} prefix={'THB'} /></td>
+        <td><NumberFormat value={props.parcelCost} displayType={'text'} thousandSeparator={true} prefix={'THB '} /></td>
         <td><button onClick={() => { props.deleteParcel(props._id) }}>Del</button></td>
       </tr>
     )
@@ -92,17 +93,17 @@ function Report() {
           <th>Delete</th>
         </tr>
 
-        {dummyReports.map((report, index) => {
+        {/* {dummyReports.map((report, index) => {
           return (<tr>
             <td>{report._id}</td>
             <td>{report.sender}</td>
             <td>{report.recipient}</td>
             <td style={{ backgroundColor: report.deliverStatus === "Success" ? 'lime' : 'none' }}>{report.deliverStatus}</td>
-            <td>{report.cost}</td>
+            <td><NumberFormat value={report.cost} displayType={'text'} thousandSeparator={true} prefix={'THB '} /></td>
             <td><button>Del</button></td>
           </tr>
           )
-        })}
+        })} */}
 
         {reports.map((report, index) => {
           return (

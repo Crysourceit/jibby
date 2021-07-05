@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.8.3",
     "aos": "^2.3.4",
     "axios": "^0.21.1",
+    "faker": "^5.5.3",
     "qrcode": "^1.4.4",
     "qrcode.react": "^1.0.1",
     "react": "^17.0.2",
