@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
+import "./App.css";
 import Navbar from './components/Navbar/Navbar'
 import PageNotFound from './components/Pages/PageNotFound';
 import Tracking from './components/TrackingModule/Tracking';

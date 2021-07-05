@@ -6,13 +6,14 @@ import "./Tracking.css";
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import TrackStepper from "./TrackStepper/TrackStepper";
 const PUBLIC_URL = process.env.PUBLIC_URL;
 
 const fieldStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      width: '40ch'
+      width: '35ch'
     },
   }
 }));
@@ -134,10 +135,16 @@ function Tracking(props) {
 
   const field = fieldStyles();
   const classes = useStyles();
+  const statusDict = {
+    'Received': 0,
+    'Local Hub': 1,
+    'Out for deliver': 2,
+    'Success': 3
+  }
 
   return (
     <div>
-      <h1 style={{ textAlign: 'center' }}>Jibby Track</h1>
+      <h1 style={{ textAlign: 'center', marginTop: '50px' }}>Jibby Track</h1>
       <div className="tracking_logo">
         <object style={{ height: "300px", width: "300px" }} type="image/svg+xml" data={PUBLIC_URL + "/svg/tracking_motion.svg"}>svg-animation</object>
       </div>
@@ -159,7 +166,11 @@ function Tracking(props) {
         </div>
         <div id="status-area">
           {isFetchSuccess && <div><h1>Status</h1></div>}
-          {isFetchSuccess && <div><p>Sender: <strong>{parcelStatus.sender.firstName}</strong>  |  Recipient: <strong>{parcelStatus.recipient.firstName}</strong>  |  Status: <strong>{parcelStatus.deliverStatus}</strong></p></div>}
+          {isFetchSuccess && <div><p>Sender: <strong>{parcelStatus.sender.firstName}</strong>  |  Recipient: <strong>{parcelStatus.recipient.firstName}</strong></p></div>}
+          {isFetchSuccess && <div><p>Status: <strong>{parcelStatus.deliverStatus}</strong></p></div>}
+          <div>
+            {isFetchSuccess && <TrackStepper currentStep={statusDict[parcelStatus.deliverStatus]} />}
+          </div>
         </div>
       </div>
     </div>

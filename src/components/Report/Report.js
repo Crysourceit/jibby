@@ -1,6 +1,7 @@
 import dummyReports from "./dummyReports.js";
+import EditDialog from "./EditDialog/EditDialog.js";
 import NumberFormat from 'react-number-format';
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './Report.css';
 import RandomHr from '../RandomHr/RandomHr';
 import axios from 'axios';
@@ -19,8 +20,9 @@ function Report() {
         <td>{props._id}</td>
         <td>{props.senderFName}</td>
         <td>{props.recipientFName}</td>
-        <td style={{ backgroundColor: props.deliverStatus === "Success" ? 'lime' : 'none' }}>{props.deliverStatus}</td>
+        <td style={{ backgroundColor: props.deliverStatus === "Success" ? '#9FE6A0' : 'none' }}>{props.deliverStatus}</td>
         <td><NumberFormat value={props.parcelCost} displayType={'text'} thousandSeparator={true} prefix={'THB '} /></td>
+        <td><EditDialog _id={props._id} editStatus={props.editStatus} fetchReport={setIsinitialFetch} /></td>
         <td><button onClick={() => { props.deleteParcel(props._id) }}>Del</button></td>
       </tr>
     )
@@ -45,6 +47,19 @@ function Report() {
       console.log(error)
     }
   }
+
+  // Edit status
+  async function handleEditStatus(_id, deliverStatus) {
+    try {
+      await axios.patch('/parcel/' + _id, {
+        _id: _id,
+        deliverStatus: deliverStatus
+      });
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   function deleteParcel(id) {
     // console.log("Called")
@@ -71,17 +86,12 @@ function Report() {
   // }, 5000);
 
   return (
-    <div class="report_container">
-      <div>
+    <div className="report_container">
+      <div className="report_headers">
         <h1>Report</h1>
-      </div>
-
-      <RandomHr width='100%' />
-
-      <div>
         <h2>All parcels</h2>
       </div>
-      <button onClick={fetchParcel} style={{ marginBottom: '10px' }}>Refresh</button>
+      <button onClick={fetchParcel} style={{ marginBottom: '35px' }}>Refresh</button>
 
       <table>
         <tr>
@@ -90,6 +100,7 @@ function Report() {
           <th>Recipient</th>
           <th>Status</th>
           <th>Cost</th>
+          <th>EditStatus</th>
           <th>Delete</th>
         </tr>
 
@@ -116,6 +127,7 @@ function Report() {
               deliverStatus={report.deliverStatus}
               parcelCost={report.parcel.cost}
               deleteParcel={deleteParcel}
+              editStatus={handleEditStatus}
             />
           );
         })}

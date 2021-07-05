@@ -1,0 +1,23 @@
+.stepper {
+  width: 16%;
+  margin: 0 auto;
+  margin-top: 45px;
+}
+
+/* .stepper-label {
+  color: red;
+  background-color: red;
+} */
+
+.stepper-box {
+  color: blue;
+  background-color: blue;
+}
+
+@media screen and (max-width: 960px) {
+  .stepper {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+}

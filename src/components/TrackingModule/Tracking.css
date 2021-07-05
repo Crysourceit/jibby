@@ -1,8 +1,7 @@
 .tracking_logo {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 30px;
 }
-
 
 
 .tracking_container {
@@ -66,9 +65,9 @@
 
 
 @media screen and (max-width: 960px) {
-
   #status-area p {
     font-size: 1rem;
   }
 
+  /* style={{ textAlign: 'center', width: '20vw', margin: '60px auto 0 auto' }} */
 }
