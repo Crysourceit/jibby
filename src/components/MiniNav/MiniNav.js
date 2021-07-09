@@ -7,7 +7,7 @@ function MiniNav() {
       <div className="mini-nav-wrapper">
         <div className="box box1">
           <div>Jibby</div>
-          <div><span style={{ color: 'crimson' }}>true</span> <span style={{ color: 'midnightblue' }}>e-logistics</span></div>
+          <div><span style={{ color: 'crimson' }}>by</span> <span style={{ color: 'midnightblue' }}>wit</span></div>
         </div>
         <div className="box box2"></div>
         <div className="box box3">
