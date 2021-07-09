@@ -77,7 +77,7 @@ function Tracking(props) {
   async function fetchParcelStatus(id) {
     // console.log("fetchParcelStatus() invoked")
     try {
-      const response = await axios.get("/parcel" + `/${id}`);
+      const response = await axios.get("/api/parcel" + `/${id}`);
       // console.log("try block reached");
       if (response.status === 200 && response.data != null) {
         // console.log(response.data)
