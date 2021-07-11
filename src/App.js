@@ -19,8 +19,7 @@ AOS.init({
 
 function App() {
   return (
-
-    <Router>
+    <Router basename="/jibby">
       {/* Always show */}
       <div className="root">
         <MiniNav />

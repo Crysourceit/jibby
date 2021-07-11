@@ -1,12 +1,12 @@
 const MenuItems = [
   {
     title: 'Home',
-    url: '/',
+    url: '/jibby/',
     cName: 'nav-links'
   },
   {
     title: 'Track',
-    url: '/track',
+    url: '/jibby/track',
     cName: 'nav-links'
   },
   // {
@@ -16,12 +16,12 @@ const MenuItems = [
   // },
   {
     title: 'Register',
-    url: '/register',
+    url: '/jibby/register',
     cName: 'nav-links'
   },
   {
     title: 'Report',
-    url: '/report',
+    url: '/jibby/report',
     cName: 'nav-links'
   }
 ]

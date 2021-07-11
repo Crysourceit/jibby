@@ -5,7 +5,7 @@ import "./PageNotFound.css";
 
 
 export default function PageNotFound() {
-  document.title = `404 Error | Saleng.th`;
+  document.title = `404 Error | Jibby`;
   return (
     // From
     // https://github.com/blairlee227/IlluStatus
