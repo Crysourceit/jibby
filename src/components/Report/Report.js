@@ -30,7 +30,7 @@ function Report() {
 
   // Fetch
   async function fetchParcel() {
-    const response = await axios.get("/parcel");
+    const response = await axios.get("/api/parcel");
     setReport(response.data);
     // console.log(response.data);
     console.log("Fetching data...")
@@ -40,7 +40,7 @@ function Report() {
   // Delete
   async function handleDelete(_id) {
     try {
-      await axios.delete('/parcel/' + _id, {
+      await axios.delete('/api/parcel/' + _id, {
         _id: _id
       });
     } catch (error) {
@@ -51,7 +51,7 @@ function Report() {
   // Edit status
   async function handleEditStatus(_id, deliverStatus) {
     try {
-      await axios.patch('/parcel/' + _id, {
+      await axios.patch('/api/parcel/' + _id, {
         _id: _id,
         deliverStatus: deliverStatus
       });

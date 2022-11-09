@@ -82,7 +82,7 @@ function Register() {
 
   async function postParcelAwait() {
     try {
-      const response = await axios.post('/parcel', {
+      const response = await axios.post('/api/parcel', {
         senderInfo: senderInfo,
         recipientInfo: recipientInfo,
         parcelInfo: parcelInfo

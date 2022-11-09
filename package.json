@@ -51,5 +51,6 @@
   },
   "devDependencies": {
     "svg-react-loader": "^0.4.6"
-  }
+  },
+  "homepage": "http://mahanin.com/jibby"
 }

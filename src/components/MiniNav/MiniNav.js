@@ -12,7 +12,7 @@ function MiniNav() {
         <div className="box box2"></div>
         <div className="box box3">
           <div><i class="fas fa-phone-volume"></i>02-8888888</div>
-          <div><i class="fas fa-envelope"></i>jib@jibby.co</div>
+          <div><i class="fas fa-envelope"></i>jib@jibby.cc</div>
           <div><i class="fas fa-clock"></i>Mon-Fri : 8.30 - 17.30</div>
         </div>
       </div>

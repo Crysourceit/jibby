@@ -83,7 +83,7 @@ export default function QRCodeComp(props) {
           </Typography>
           <div style={{ textAlign: 'center' }}>
             <div>
-              <QRCode value={"http://localhost:3000/track/" + props.jibbyTag} />
+              <QRCode value={"http://139.59.124.21/track/" + props.jibbyTag} />
             </div>
             {isClicked && <Redirect
               to={{
